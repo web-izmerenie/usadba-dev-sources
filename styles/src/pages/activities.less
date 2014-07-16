@@ -1,0 +1,102 @@
+/**
+ * "activities" page styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+@import "two_columns_page";
+
+html.activities_page body {
+	.twoColumnsPage();
+
+	.section_wrap .columns,
+	.section_wrap .columns .left_block .blur_bg { // {{{1
+		background-position: center center !important;
+		background-repeat: no-repeat !important;
+		.background-size(cover);
+	} // .section_wrap .columns }}}1
+
+	.section_wrap .columns .right_block { vertical-align: top; }
+	.section_wrap .columns .right_block main { display: block; h2 + p { .resetCSS; } }
+
+	.section_wrap .columns .right_block section.activities { // {{{1
+		display: block;
+
+		&:after { .pseudoBlock; clear: both; }
+
+		.more { // {{{2
+			@iconW: 16px;
+			@color: #f9e9c6;
+			@shadowColor: #e7d8b6;
+
+			.linkNoLine;
+			display: block;
+			float: right;
+			margin: @mainMargin;
+
+			figure { // {{{3
+				display: block;
+				text-align: center;
+
+				img, figcaption {
+					.box-shadow(0 0 0 1px @shadowColor);
+				} // img, figcaption
+
+				img { // {{{4
+					@s: 107px;
+
+					display: inline-block;
+					.size(@s);
+					.box-sizing(border-box);
+					.border-radius(@s/2);
+					border: 3px solid @color;
+					margin: 0 auto;
+					.transition(border-color @animationSpeed linear);
+					.relative(auto, auto, auto, -(@iconW/2));
+				} // img }}}4
+
+				figcaption { // {{{4
+					display: inline-block;
+					background: @color;
+					.border-radius(2px 0 0 2px);
+					color: @dark3Color;
+					.size(auto, 29px);
+					.customFont('PT Sans', 16px, 18px);
+					font-weight: bold;
+					text-transform: uppercase;
+					padding: 0 7px;
+					padding-top: 23px-18px+1px;
+					.box-sizing(border-box);
+					margin-top: 14px + 2px; /* plus box-shadow */
+					.relative;
+					margin-right: @iconW;
+					.transition(background-color @animationSpeed linear);
+
+					&:before { &:extend(.icon-right_filled_arrow_light); }
+					&:after { &:extend(.icon-right_filled_arrow_light_active); }
+
+					&:before, &:after {
+						.pseudoBlock;
+						.absolute(-1px, -@iconW);
+						.opacity(1);
+						.transition(opacity @animationSpeed linear);
+					}
+
+					&:after {
+						.pseudoBlock;
+						.opacity(0);
+					}
+				} // figcaption }}}4
+			} // figure }}}3
+
+			&:hover figure { // {{{3
+				img { border-color: @activeLightLinkColor; }
+				figcaption {
+					background: @activeLightLinkColor;
+					//&:before { .opacity(0); }
+					&:after { .opacity(1); }
+				} // figcaption
+			} // &:hover figure }}}3
+		} // .more }}}2
+	} // .section_wrap .columns .right_block section.activities }}}1
+} // html.activities_page body

@@ -1,0 +1,51 @@
+/**
+ * Footer styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html body footer {
+	display: block;
+	.size(auto, @footerHeight);
+	min-width: @minWidth;
+	margin-top: -@footerHeight;
+	background: @darkBgColor;
+	color: @lightContentColor;
+	font: @accentFont;
+	overflow: hidden;
+	.relative;
+
+	.contacts {
+		display: block;
+		.absolute(19px, auto, auto, @mainMargin);
+	} // .contacts
+
+	.developer {
+		display: block;
+		.absolute(auto, @mainMargin, 15px);
+		color: #b28c66;
+		.customFont('Roboto', 12px, 15px);
+		white-space: nowrap;
+		text-transform: uppercase;
+		vertical-align: middle;
+
+		a.logo {
+			&:extend(.icon-wi_logo);
+			background: none;
+			.relative(2px);
+			overflow: hidden;
+			white-space: nowrap;
+			text-indent: -50000px;
+			margin-left: 3px;
+
+			&:before { &:extend(.icon-wi_logo); }
+			&:after { &:extend(.icon-wi_logo_active); }
+
+			.animatedIcon;
+		} // a.logo
+	} // .developer
+} // footer
+
+html.ie8 body footer { // IE8 {{{1
+	.developer a.logo { .IE8_animatedIcon; }
+} // IE8 }}}1

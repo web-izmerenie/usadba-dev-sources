@@ -1,0 +1,120 @@
+/**
+ * "activities" section icons
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html.activities_page body .section_wrap,
+html.activities_subpage body .section_wrap {
+	@offset: 8px;
+	@offsetSubpage: @offset;
+	@subpageTopOffset: 3px;
+
+	.iconPaddingL(@p) { padding-left: @p + @offset; }
+	.iconPaddingR(@p) { padding-right: @p + @offset; }
+	.iconPaddings(@p) { .iconPaddingL(@p); .iconPaddingR(@p); }
+	.iconPaddingL(@p, @subpage) { padding-left: @p + @offsetSubpage; }
+	.iconPaddingR(@p, @subpage) { padding-right: @p + @offsetSubpage; }
+	.iconPaddings(@p, @subpage) { .iconPaddingL(@p, 1); .iconPaddingR(@p, 1); }
+
+	.iconTop(@t) { &:before, &:after { top: @t !important; } }
+	.iconTop(@t, @subpage) { &:before, &:after { top: (@t + @subpageTopOffset) !important; } }
+
+	&.rafting {
+		.section_info h2, .head h1 {
+			&:before, &:after { &:extend(.icon-oars); }
+		}
+		@t: 0; @p: 39px;
+		.section_info h2 { .iconTop(@t); .iconPaddings(@p); }
+		.head h1 { .iconTop(@t, 1); .iconPaddings(@p, 1); }
+	}
+
+	&.quad {
+		.section_info h2, .head h1 {
+			&:before { &:extend(.icon-quad_left); }
+			&:after { &:extend(.icon-quad_right); }
+		}
+		@t: -2px; @p: 43px;
+		.section_info h2 { .iconTop(@t); .iconPaddings(@p); }
+		.head h1 { .iconTop(@t, 1); .iconPaddings(@p, 1); }
+	}
+
+	&.mountainbike {
+		.section_info h2, .head h1 {
+			&:before { &:extend(.icon-bike_left); }
+			&:after { &:extend(.icon-bike_right); }
+		}
+		@t: 4px; @p: 55px;
+		.section_info h2 { .iconTop(@t); .iconPaddings(@p); }
+		.head h1 { .iconTop(@t, 1); .iconPaddings(@p, 1); }
+	}
+
+	&.jeep {
+		.section_info h2, .head h1 {
+			&:before { &:extend(.icon-jeep_left); }
+			&:after { &:extend(.icon-jeep_right); }
+		}
+		@t: 4px; @p: 52px;
+		.section_info h2 { .iconTop(@t); .iconPaddings(@p); }
+		.head h1 { .iconTop(@t, 1); .iconPaddings(@p, 1); }
+	}
+
+	&.tracking {
+		.section_info h2, .head h1 {
+			&:before { &:extend(.icon-tracking_left); }
+			&:after { &:extend(.icon-tracking_right); }
+		}
+		@t: -6px; @p: 42px;
+		.section_info h2 { .iconTop(@t); .iconPaddings(@p); }
+		.head h1 { .iconTop(@t, 1); .iconPaddings(@p, 1); }
+	}
+
+	&.canyoning {
+		.section_info h2, .head h1 {
+			&:before { &:extend(.icon-canyoning_left); }
+			&:after { &:extend(.icon-canyoning_right); }
+		}
+		@t: -3px; @p: 34px;
+		.section_info h2 { .iconTop(@t); .iconPaddings(@p); }
+		.head h1 { .iconTop(@t, 1); .iconPaddings(@p, 1); }
+	}
+
+	&.rockclimbing {
+		.section_info h2, .head h1 {
+			&:before { &:extend(.icon-carbine_left); }
+			&:after { &:extend(.icon-carbine_right); }
+		}
+		@t: -2px; @pL: 35px; @pR: @pL + 2px;
+		.section_info h2 { .iconTop(@t); .iconPaddingL(@pL); .iconPaddingR(@pR); }
+		.head h1 { .iconTop(@t, 1); .iconPaddingL(@pL, 1); .iconPaddingR(@pR, 1); }
+	}
+
+	&.cave {
+		.section_info h2, .head h1 {
+			&:before, &:after { &:extend(.icon-helmet); }
+		}
+		@t: 4px; @p: 44px;
+		.section_info h2 { .iconTop(@t); .iconPaddings(@p); }
+		.head h1 { .iconTop(@t, 1); .iconPaddings(@p, 1); }
+	}
+
+	&.equestrian {
+		.section_info h2, .head h1 {
+			&:before { &:extend(.icon-equestrian_left); }
+			&:after { &:extend(.icon-equestrian_right); }
+		}
+		@t: -3px; @p: 44px;
+		.section_info h2 { .iconTop(@t); .iconPaddings(@p); }
+		.head h1 { .iconTop(@t, 1); .iconPaddings(@p, 1); }
+	}
+
+	&.ropepark {
+		.section_info h2, .head h1 {
+			&:before { &:extend(.icon-rope_left); }
+			&:after { &:extend(.icon-rope_right); }
+		}
+		@t: 9px; @p: 52px;
+		.section_info h2 { .iconTop(@t); .iconPaddings(@p); }
+		.head h1 { .iconTop(@t, 1); .iconPaddings(@p, 1); }
+	}
+} // html.activities_page ..., html.activities_subpage ...

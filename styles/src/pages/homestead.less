@@ -1,0 +1,89 @@
+/**
+ * "homestead" page styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+@import "two_columns_page";
+
+html.homestead_page body {
+	.twoColumnsPage();
+
+	.section_wrap .columns,
+	.section_wrap .columns .left_block .blur_bg {
+		background-position: center center !important;
+		background-repeat: no-repeat !important;
+		.background-size(cover);
+	} // .section_wrap .columns
+
+	// section customized {{{1
+
+	// background at top
+	.section_wrap.guesthouse .columns,
+	.section_wrap.guesthouse .columns .left_block .blur_bg,
+	.section_wrap.main .columns,
+	.section_wrap.main .columns .left_block .blur_bg
+	{
+		background-position: center 0 !important;
+	}
+
+	// section customized }}}1
+
+	.section_wrap .columns .right_block {
+		vertical-align: bottom;
+	} // .section_wrap .columns .right_block
+
+	.section_wrap .columns .right_block section.homestead {
+		display: block;
+
+		nav.rooms {
+			display: block;
+			margin-left: 8px;
+			max-width: 1300px;
+			text-align: center;
+
+			a {
+				@imgS: 74px; // image size
+				@s: @imgS + 28px; // size
+
+				display: inline-block;
+				.size(@s, auto);
+				text-align: center;
+				margin-bottom: 8px;
+				vertical-align: top;
+
+				img {
+					display: block;
+					.size(@imgS);
+					.box-sizing(border-box);
+					.border-radius(@s/2);
+					border: 3px solid @light2Color;
+					margin: 0 auto;
+					.transition(border-color @animationSpeed linear);
+				} // img
+
+				& > span {
+					display: inline-block;
+					text-align: center;
+					background: @light2Color;
+					color: @dark3Color;
+					.border-radius(3px);
+					.customFont('PT Sans', 12px, 14px);
+					font-weight: bold;
+					text-transform: uppercase;
+					.box-sizing(border-box);
+					padding: 1px 9px 3px;
+					margin-top: 6px;
+					width: auto;
+					max-width: @s;
+					.transition(background-color @animationSpeed linear);
+				} // & > span
+
+				&:hover {
+					img { border-color: @activeLightLinkColor; }
+					& > span { background: @activeLightLinkColor; }
+				} // &:hover
+			} // a
+		} // nav.rooms
+	} // .section_wrap .columns .right_block section.homestead
+} // html.homestead_page body

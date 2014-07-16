@@ -1,0 +1,20 @@
+/**
+ * "workshop" page styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+@import "strange_shaped_photos";
+@import "panorama_blocks";
+
+html.workshop_page body section.workshop {
+	display: block;
+	min-width: @minWidth;
+	max-width: @maxWidth - (@mainMargin * 2);
+	margin: 0 auto;
+	margin-bottom: 54px;
+
+	.panoramaBlocks;
+
+	ul.photos { .strangeShapedPhotos; }
+} // html.workshop_page body section.workshop

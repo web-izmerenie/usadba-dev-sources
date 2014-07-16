@@ -1,0 +1,52 @@
+/**
+ * Styles for "popup" js-module
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html.popup body { overflow: hidden; }
+
+html.popup body {
+	.popup_overflow {
+		display: none;
+		.size(100%);
+		background: rgba(0, 0, 0, 0.5);
+		z-index: 105;
+		.fixed(0, auto, auto, 0);
+	} // .popup_overflow
+
+	.popup_content {
+		display: none;
+		z-index: 110;
+		background: white;
+		.fixed(50%, auto, auto, 50%);
+		.border-radius(20px);
+		max-width: @maxWidth - (@mainMargin * 2);
+
+		@closerPos: 17px;
+
+		.closer {
+			&:extend(.icon-closer_small);
+			.linkNoLine;
+			background: none;
+			cursor: pointer;
+			display: block;
+			.absolute(@closerPos, @closerPos);
+
+			&:before { &:extend(.icon-closer_small); }
+			&:after { &:extend(.icon-closer_small_active); }
+
+			.animatedIcon;
+		} // .closer
+
+		&.scrolling_x {
+			overflow-x: scroll;
+
+			.closer { right: auto; left: @closerPos; }
+		}
+
+		&.scrolling_y { overflow-y: scroll; }
+	} // .popup_content
+
+	.top_side, header, footer { overflow-y: scroll; }
+} // html.popup body

@@ -1,0 +1,124 @@
+/**
+ * Main page styles (printer)
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html.main_page body .top_side main { padding-top: 0; }
+
+html.main_page body main section.main_page {
+	@cardMinHeight: 400px;
+
+	.card.card_1 { // {{{1
+		display: block;
+		.size(100%);
+		.relative;
+		min-height: @cardMinHeight;
+		background-position: center center;
+		background-repeat: no-repeat;
+		.background-size(cover);
+		background-attachment: fixed;
+		z-index: 0;
+		overflow: hidden;
+
+		img.background { display: none; }
+
+		.logo_wrap { // {{{2
+			display: block;
+			.size(100%);
+			text-align: center;
+			.fontMetrics(0, 0);
+			z-index: 20;
+			.relative;
+
+			.helper {
+				display: inline-block;
+				height: 100%;
+				vertical-align: middle;
+			} // .helper
+
+			.logo_2 {
+				display: inline-block;
+				vertical-align: middle;
+			} // .logo_2
+		} // .logo_wrap_1 }}}2
+
+		.scroll_down { // {{{2
+			@iconWidth: 50px;
+
+			.linkNoLine;
+			&:extend(.icon-V);
+			background: none;
+			display: block;
+			.absolute(auto, auto, 36px - 8px, 50%);
+			margin-left: -(@iconWidth / 2);
+			cursor: pointer;
+			z-index: 30;
+
+			&:before { &:extend(.icon-V); }
+			&:after { &:extend(.icon-V_active); }
+
+			.animatedIcon;
+
+			&:before, &:after {
+				.transition(opacity @animationSpeed ease-out);
+			}
+		} // .scroll_down }}}2
+
+		video { // {{{2
+			display: block;
+			.size(auto, 100%);
+			.absolute(0, auto, auto, 0);
+			margin: 0 auto;
+			z-index: -1;
+			.opacity(0);
+		} // video }}}2
+	} // .card.card_1 }}}1
+
+	.card { // {{{1
+		display: block;
+		.size(100%);
+		background: @lightBgColor;
+
+		.background {
+			display: block;
+			.size(100%);
+			min-height: @cardMinHeight;
+			background-position: center center;
+			background-repeat: no-repeat;
+			.background-size(cover);
+			background-attachment: fixed;
+
+			img { display: none; }
+		} // .background
+
+		h2 {
+			.resetCSS;
+			display: block;
+			.customFont('PT Sans', 37px, 39px);
+			font-weight: bold;
+			text-transform: uppercase;
+			color: @altContentColor;
+		} // h2
+
+		.text {
+			color: @altContentColor;
+			display: block;
+			width: 900px;
+			margin: 0 auto;
+			padding-top: 73px - 18px;
+			padding-bottom: 59px - 6px;
+			text-align: center;
+		} // .text
+
+		&.card_3 .text, &.card_4 .text { width: 600px; }
+	} // .card }}}1
+} // html.main_page body main
+
+html.ie8 body main { // IE8 {{{1
+	.card.card_1, .card .background {
+		-ms-behavior: url('@{tplPath}ie8/backgroundsize.min.htc');
+	}
+
+	.card.card_1 .scroll_down { .IE8_animatedIcon; }
+} // IE8 }}}1

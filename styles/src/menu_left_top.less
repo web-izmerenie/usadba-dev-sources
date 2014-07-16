@@ -1,0 +1,88 @@
+/**
+ * Menu-left-top mixin
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+.menuLeftTop(@startAt: 1) {
+	display: block;
+	.fontMetrics(0, 0);
+	white-space: nowrap;
+	margin-top: 36px;
+	height: 32px;
+	overflow: hidden;
+	margin-left: @mainMargin;
+	margin-right: @mainMargin;
+
+	@px: 10px; // padding X-axis
+	@pt: 22px-15px; // padding top
+	@pb: 10px-3px; // padding bottom
+
+	a, span {
+		.simpleLink;
+		display: inline-block;
+		.customFont('PT Sans', 16px, 18px);
+		font-weight: bold;
+		text-transform: uppercase;
+		color: @darkBgColor;
+		border-bottom-color: @darkBgUnderlineColor;
+		.relative;
+	} // a, span
+
+	span, span:hover {
+		border: 0;
+		color: @light2Color;
+		cursor: default;
+		background: @darkBgColor;
+		.border-radius(5px);
+		padding: @pt @px @pb;
+	} // span, span:hover
+	
+	a { margin: @pt @px @pb; }
+
+	.setIcon(@offsetLeft, @offsetTop, @padding, @margin) {
+		margin-left: @margin + (@offsetLeft + @padding);
+		.animatedIcon;
+		&:before, &:after {
+			.absolute(@offsetTop - @pt, auto, auto, @offsetLeft - (@offsetLeft + @padding));
+		}
+	}
+
+	.activeIcon(@offsetLeft, @offsetTop, @padding) {
+		padding-left: @offsetLeft + @padding;
+		&:before {
+			.pseudoBlock;
+			.absolute(@offsetTop, auto, auto, @offsetLeft);
+		}
+	}
+
+	@el_1_ol: 0; @el_1_ot: 2px + 7px; @el_1_p: 17px; @el_1_ml: 0; @startAt_1: @startAt;
+	@el_1_s1: ~'span:nth-child(@{startAt_1})';
+	@{el_1_s1} { margin-left: @el_1_ml; }
+	@el_1_s2: ~'a:nth-child(@{startAt_1})';
+	@{el_1_s2} { &:before { &:extend(.icon-left_arrow); } &:after { &:extend(.icon-left_arrow_hover); } .setIcon(@el_1_ol, @el_1_ot, @el_1_p, @el_1_ml); }
+	@el_1_s3: ~'span:nth-child(@{startAt_1})';
+	@{el_1_s3} { &:before { &:extend(.icon-left_arrow_active); } .activeIcon(@el_1_ol, @el_1_ot, @el_1_p); }
+
+	@el_2_ol: 8px; @el_2_ot: 8px; @el_2_p: 26px + 1px; @el_2_ml: 34px - 18px; @startAt_2: @startAt + 1;
+	@el_2_s1: ~'span:nth-child(@{startAt_2})';
+	@{el_2_s1} { margin-left: @el_2_ml; }
+	@el_2_s2: ~'a:nth-child(@{startAt_2})';
+	@{el_2_s2} { &:before { &:extend(.icon-leaf); } &:after { &:extend(.icon-leaf_hover); } .setIcon(@el_2_ol, @el_2_ot, @el_2_p, @el_2_ml); }
+	@el_2_s3: ~'span:nth-child(@{startAt_2})';
+	@{el_2_s3} { &:before { &:extend(.icon-leaf_active); } .activeIcon(@el_2_ol, @el_2_ot, @el_2_p); }
+
+	@el_3_ol: 11px; @el_3_ot: 7px; @el_3_p: 23px; @el_3_ml: 39px - @el_3_p - @el_3_ol; @startAt_3: @startAt + 2;
+	@el_3_s1: ~'span:nth-child(@{startAt_3})';
+	@{el_3_s1} { margin-left: @el_3_ml; }
+	@el_3_s2: ~'a:nth-child(@{startAt_3})';
+	@{el_3_s2} { &:before { &:extend(.icon-corner); } &:after { &:extend(.icon-corner_hover); } .setIcon(@el_3_ol, @el_3_ot, @el_3_p, @el_3_ml); }
+	@el_3_s3: ~'span:nth-child(@{startAt_3})';
+	@{el_3_s3} { &:before { &:extend(.icon-corner_active); } .activeIcon(@el_3_ol, @el_3_ot, @el_3_p); }
+
+	a:hover {
+		color: @light3Color;
+		border-bottom-color: @light3Color;
+		cursor: pointer;
+	} // a:hover
+} // .menuLeftTop()

@@ -1,0 +1,112 @@
+/**
+ * Two columns page mixin
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+.twoColumnsPage() {
+	.section_wrap {
+		display: block;
+		padding-top: @headerHeight;
+		padding-bottom: @footerHeight;
+
+		.head { // {{{1
+			display: block;
+			text-align: center;
+			padding-top: 67px - 36px;
+			padding-bottom: 34px - 6px;
+
+			h1 {
+				display: block;
+				.customFont('PT Sans', 40px, 42px);
+				font-weight: bold;
+				text-transform: uppercase;
+				color: @dark2Color;
+			} // h1
+		} // .head }}}1
+
+		.columns { // {{{1
+			@mh: 645px; // min height
+
+			display: table;
+			.size(100%, @mh);
+			margin-bottom: 57px;
+			background: @plugColor;
+
+			.left_block { // {{{2
+				display: table-cell;
+				width: 25%;
+				overflow: hidden;
+				z-index: 0;
+				vertical-align: middle;
+				background: rgba(0, 0, 0, 0.5);
+				text-align: right;
+				.fontMetrics(0, 0);
+
+				nav.left_submenu { // {{{3
+					@w: 214px;
+
+					z-index: 5;
+					display: inline-block;
+					.size(@w, auto);
+					.relative;
+					text-align: left;
+					margin-right: 8px;
+					margin: 20px 8px 20px 0;
+
+					a {
+						.linkNoLine;
+						&:hover { color: @activeLightLinkColor; }
+					} // a
+
+					a, span {
+						display: block;
+						.size(@w, auto);
+						.customFont('PT Sans', 18px, 24px);
+						font-weight: bold;
+						text-transform: uppercase;
+						color: @light2Color;
+						cursor: pointer;
+						.box-sizing(border-box);
+						padding: 23px-18px 8px 10px-6px;
+						margin-top: 41px-33px;
+					} // a, span
+
+					span {
+						background: @light2Color;
+						.border-radius(5px);
+						color: @dark3Color;
+						cursor: default;
+					} // span
+
+					a:first-child, span:first-child {
+						margin-top: 0;
+					} // a:first-child, span:first-child
+				} // nav.left_submenu }}}3
+
+				.blur_bg_wrap { // {{{3
+					display: block;
+					z-index: 0;
+					overflow: hidden;
+					.absolute(0, auto, auto, 0);
+					.fontMetrics(0, 0);
+
+					.blur_bg {
+						display: block;
+						z-index: 0;
+						.absolute(0, auto, auto, 0);
+					} // .blur_bg
+				} // .blur_bg_wrap }}}3
+			} // .left_block }}}2
+
+			.right_block { // {{{2
+				display: table-cell;
+				vertical-align: top;
+				text-align: left;
+				.fontMetrics(0, 0);
+			} // .right_block }}}2
+		} // .columns }}}1
+	} // .section_wrap
+
+	.top_side main { .resetCSS; }
+} // .twoColumnsPage()

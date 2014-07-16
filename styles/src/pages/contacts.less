@@ -1,0 +1,78 @@
+/**
+ * "contacts" page styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html body section.contacts {
+	display: block;
+	max-width: @maxWidth;
+	margin: 0 auto;
+	.box-sizing(border-box);
+	padding-left: @mainMargin;
+	padding-right: @mainMargin;
+	padding-bottom: 54px;
+
+	.contact_unit {
+		display: block;
+		h2 { .resetCSS; text-align: left; text-transform: inherit; }
+	} // .contact_unit
+
+	.contact_unit + h2 { margin-top: @mainMargin; }
+	h2 + .way_icons { padding-top: @mainMargin; }
+	.interactive_map + h2, ul + h2 { margin-top: 56px - 18px; }
+	h2 + .interactive_map { margin-top: 23px - 4px; }
+	//ul + h2 { margin-top: 53px - 24px; } // cause small, use .interactive_map+h2
+
+	.way_icons {
+		display: block;
+		.fontMetrics(0, 0);
+		text-align: center;
+
+		& > span {
+			display: inline-block;
+			white-space: nowrap;
+			text-indent: -50000px;
+			margin-left: 45px;
+			&:first-child { margin-left: 0; }
+			vertical-align: middle;
+		} // & > span
+	} // .way_icons
+
+	.centering {
+		display: block;
+		text-align: center;
+	} // .centering
+
+	.notation {
+		display: inline-block;
+		font-weight: bold;
+		border: 1px solid #cac7c2;
+		border-left: 0;
+		border-right: 0;
+		text-align: center;
+		.fontMetrics(18px, 20px);
+		padding-top: 40px - 16px;
+		padding-bottom: 27px - 4px;
+		margin-top: 23px;
+	} // .notation
+
+	ul {
+		display: block;
+		.size(600px, auto);
+		margin: 0 auto;
+		margin-top: 45px - 18px;
+	} // ul
+
+	.interactive_map {
+		display: block;
+		height: 400px;
+		background: @plugColor;
+		overflow: hidden;
+
+		.map {
+			display: block;
+			.size(100%);
+		} // .map
+	} // .interactive_map
+} // html body section.contacts

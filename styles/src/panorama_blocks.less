@@ -1,0 +1,48 @@
+/**
+ * Panorama blocks mixin
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+.panoramaBlocks() {
+	.panorama, .detail_picture { // {{{1
+		display: block;
+		background: @plugColor;
+		.size(100%, 400px);
+		max-width: @maxWidth - (@mainMargin * 2);
+		margin: 0 auto;
+		.relative;
+	} // .panorama, .detail_picture }}}1
+
+	.panorama { // {{{1
+		&:before {
+			@spinnerSize: 66px;
+
+			.pseudoBlock;
+			.size(@spinnerSize);
+			.bg('big_spinner.gif', center center no-repeat);
+			.absolute(50%, auto, auto, 50%);
+			margin-left: -(@spinnerSize / 2);
+			margin-top: -((@spinnerSize / 2) + 20px);
+			.opacity(1);
+			.transition(opacity @animationSpeed linear);
+		} // &:before
+
+		&:after {
+			.icon-panorama;
+			.pseudoBlock;
+			.absolute(auto, auto, 42px, 50%);
+			margin-left: -(76px / 2);
+		} // &:after
+
+		&.loaded:before { .opacity(0); }
+	} // .panorama }}}1
+
+	.detail_picture, .detail_picture img { // {{{1
+		display: block;
+		width: 100%;
+		height: auto;
+	} // .detail_picture, .detail_picture img }}}1
+
+	.detail_picture { display: none; }
+} // .panoramaBlocks()

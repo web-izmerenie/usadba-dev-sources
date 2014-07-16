@@ -1,0 +1,208 @@
+/**
+ * popup forms styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html body > form.add_review, // "write a review" form (uses as template for other forms) {{{1
+html body > form.add_question {
+	@w: 482px;
+	@h: 389px + (24px + 16px);
+	@pLR: 30px;
+
+	display: none;
+	.size(@w, @h);
+	margin-top: -(@h / 2);
+	margin-left: -(@w / 2);
+	.box-sizing(border-box);
+	padding-left: @pLR;
+	padding-right: @pLR;
+
+	h2 {
+		&:extend(html body .top_side main h2);
+		padding-top: 53px - 18px;
+		padding-bottom: 21px - 13px;
+	} // h2
+
+	@labelInterval: 9px;
+
+	label.text, label.textarea { // {{{2
+		display: block;
+		border: 1px solid @formFieldBorderColor;
+		.box-sizing(border-box);
+		.relative;
+		z-index: 150;
+		.transition(border-color @animationSpeed linear);
+
+		& > span {
+			width: auto;
+			z-index: 170;
+		} // & > span
+
+		&.focused { border-color: @light3Color; }
+	} // label.text, label.textarea }}}2
+
+	label.text { // {{{2
+		@lw: 227px; // label width
+		@lh: 31px; // label height
+		@fontSize: 16px;
+		@lineHeight: @fontSize + 2;
+		@actualWidth: @lw - 2px; // minus border
+		@actualHeight: @lh - 2px; // minus border
+		@pt: (@actualHeight - @lineHeight) / 2; // padding top
+		@pb: @actualHeight - (@lineHeight + @pt); // padding bottom
+		@px: 8px; // padding X-axis
+
+		.size(@lw, @lh);
+		margin-top: @labelInterval;
+
+		&, & > span, & > input { cursor: text; }
+
+		& > span, & > input {
+			.resetCSS;
+			display: block;
+			.size(@actualWidth - (@px * 2), @lineHeight);
+			.absolute(0, auto, auto, 0);
+			border: 0;
+			color: @dark3Color;
+			.customFont('PT Sans', @fontSize, @lineHeight);
+			padding: @pt @px @pb;
+		} // & > span, & > input
+
+		& > input {
+			background: white;
+			z-index: 160;
+		} // & > input
+	} // label.text }}}2
+
+	label.textarea { // {{{2
+		@lw: @w - (@pLR * 2); // label width
+		@lh: 163px; // label height
+		@fontSize: 16px;
+		@lineHeight: @fontSize + 2;
+		@actualWidth: @lw - 2px; // minus border
+		@actualHeight: @lh - 2px; // minus border
+		@pt: 5px; // padding top
+		@pb: 5px; // padding bottom
+		@px: 8px; // padding X-axis
+
+		.size(@lw, @lh);
+		margin-top: @labelInterval;
+
+		&, & > span, & > textarea { cursor: text; }
+
+		& > span, & > textarea {
+			.resetCSS;
+			display: block;
+			.size(@actualWidth - (@px * 2), @lineHeight);
+			.absolute(0, auto, auto, 0);
+			border: 0;
+			color: @dark3Color;
+			.customFont('PT Sans', @fontSize, @lineHeight);
+			padding: @pt @px @pb;
+		} // & > span, & > input
+
+		& > textarea {
+			background: white;
+			z-index: 160;
+			height: @actualHeight - @pt - @pb;
+			resize: none;
+		} // & > input
+	} // label.textarea }}}2
+
+	label.required > span:after { .pseudoBlock('*'); display: inline-block; }
+	label.text.error, label.textarea.error { border-color: @formFieldErrorBorderColor; }
+
+	label.submit { // {{{2
+		&:extend(.icon-strange_shaped_button_small);
+		background: none;
+		display: block;
+		margin: 0 auto;
+		.relative;
+		z-index: 150;
+		overflow: hidden;
+		margin-top: 15px;
+
+		&:before {
+			&:extend(.icon-strange_shaped_button_small);
+			.pseudoBlock;
+			.bg('spinner.gif', center center no-repeat);
+			.absolute(-100%, auto, auto, -100%);
+			z-index: 180;
+			.opacity(0);
+			.transition(opacity @animationSpeed linear);
+		} // &:before
+
+		input {
+			.resetCSS; border: 0;
+			display: block;
+			.absolute(-100px, auto, auto, -100px);
+			background: white;
+			color: white;
+			.size(1px);
+			.fontMetrics(0, 0);
+			z-index: 160;
+		} // input
+
+		span {
+			&:extend(.icon-strange_shaped_button_small);
+			background: none;
+			display: block;
+			z-index: 170;
+			cursor: pointer;
+			.customFont('PT Sans', 15px, 17px);
+			font-weight: bold;
+			color: white;
+			text-align: center;
+			text-transform: uppercase;
+			.box-sizing(border-box);
+			padding-top: 12px;
+			.transition(color @animationSpeed linear);
+
+			&:before { &:extend(.icon-strange_shaped_button_small); }
+			&:after { &:extend(.icon-strange_shaped_button_small_active); }
+
+			.animatedIcon;
+
+			&:before, &:after { z-index: -1; }
+		} // span
+	} // label.submit }}}2
+
+	&.ajax_process label.submit {
+		span {
+			color: #4d2e20;
+			&:hover:after { .opacity(0); }
+			&:hover:before { .opacity(1); }
+		}
+
+		&:before { .opacity(1); left: 0; top: 0; }
+	} // &.ajax_process label.submit
+} // "write a review" form (uses as template for other forms) }}}1
+
+html body > form.add_question { // "ask a question" {{{1
+	@w: 363px;
+	@h: 336px;
+	@pL: 54px;
+	@pR: 48px;
+
+	padding-left: @pL;
+	padding-right: @pR;
+	.size(@w, @h);
+	margin-top: -(@h / 2);
+	margin-left: -(@w / 2);
+
+	label.textarea { // {{{2
+		@lw: @w - (@pL + @pR);
+		@lh: 70px; // label height
+		@actualWidth: @lw - 2px; // minus border
+		@actualHeight: @lh - 2px; // minus border
+		@pt: 5px; // padding top
+		@pb: 5px; // padding bottom
+		@px: 8px; // & > span, & > textarea
+
+		.size(@lw, @lh);
+
+		& > span, & > textarea { width: @actualWidth - (@px * 2); }
+		& > textarea { height: @actualHeight - @pt - @pb; }
+	} // label.textarea }}}2
+} // "ask a question" }}}1

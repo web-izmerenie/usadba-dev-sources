@@ -1,0 +1,106 @@
+/**
+ * Icons styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+@import "icons/icons";
+@import "icons/book";
+
+.icons_sprite {
+	display: inline-block;
+	overflow: hidden;
+	background-repeat: no-repeat;
+}
+
+// icons {{{1
+
+.icon-wi_logo,
+.icon-wi_logo_active,
+
+.icon-clover,
+
+.icon-V,
+.icon-V_active,
+
+.icon-left_arrow,
+.icon-left_arrow_hover,
+.icon-left_arrow_active,
+
+.icon-leaf,
+.icon-leaf_hover,
+.icon-leaf_active,
+
+.icon-corner,
+.icon-corner_hover,
+.icon-corner_active,
+
+.icon-right_filled_arrow_dark,
+
+.icon-right_filled_arrow_light,
+.icon-right_filled_arrow_light_active,
+
+.icon-photo_frame,
+
+.icon-man,
+
+// "contacts" icons {{{2
+.icon-airplane,
+.icon-train,
+.icon-bus,
+.icon-car,
+// "contacts" icons }}}2
+
+// "activities" icons {{{2
+.icon-oars,
+.icon-quad_left,
+.icon-quad_right,
+.icon-bike_left,
+.icon-bike_right,
+.icon-jeep_left,
+.icon-jeep_right,
+.icon-tracking_left,
+.icon-tracking_right,
+.icon-canyoning_left,
+.icon-canyoning_right,
+.icon-carbine_left,
+.icon-carbine_right,
+.icon-helmet,
+.icon-equestrian_left,
+.icon-equestrian_right,
+.icon-rope_left,
+.icon-rope_right,
+// "activities" icons }}}2
+
+.icon-strange_shaped_button,
+.icon-strange_shaped_button_active,
+.icon-strange_shaped_button_small,
+.icon-strange_shaped_button_small_active,
+
+.icon-closer_small,
+.icon-closer_small_active,
+.icon-gallery_left,
+.icon-gallery_left_active,
+.icon-gallery_right,
+.icon-gallery_right_active,
+
+.icon-panorama
+
+{
+	&:extend(.icons_sprite);
+	.bgImg('icons_sprite.png');
+}
+
+// icons }}}1
+
+// book {{{1
+
+.icon-book_top
+.icon-book_fill
+.icon-book_bottom
+
+{
+	&:extend(.icons_sprite);
+}
+
+// book }}}1

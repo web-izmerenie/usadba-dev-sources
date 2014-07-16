@@ -1,0 +1,80 @@
+/**
+ * Variables module
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+/* === PATHS === */
+
+@tplPath: '/bitrix/templates/main/';
+@imgPrefix: '@{tplPath}images/';
+@fontsPrefix: '@{tplPath}fonts/';
+
+// for images and fonts
+@revision: 10;
+
+/* === SIZES === */
+
+@minWidth: 980px;
+@maxWidth: 1200px;
+
+@headerHeight: 87px;
+@footerHeight: @headerHeight;
+
+@mainMargin: 20px;
+@mainMargin2: @mainMargin * 2;
+
+/* === FONTS === */
+
+@contentFontSize: 16px;
+@contentFontLine: 24px;
+@contentFontFamily: 'PT Sans', sans-serif;
+@contentFont: ~'@{contentFontSize}/@{contentFontLine}' @contentFontFamily;
+
+@accentFontSize: 13px;
+@accentFontLine: 17px;
+@accentFontFamily: Arial, 'Liberation Sans', Helvetica, sans-serif;
+@accentFont: ~'@{accentFontSize}/@{accentFontLine}' @accentFontFamily;
+
+/* === COLORS === */
+
+@contentColor: @dark2Color;
+@lightContentColor: @light2Color;
+@altContentColor: #452b1f;
+
+@linkColor: #2c8abd;
+@linkColorUnderline: #72a6c5;
+@activeLinkColor: @light3Color;
+@activeLinkColorUnderline: @light3Color;
+
+@lightLinkColor: @lightContentColor;
+@activeLightLinkColor: #ffd57a;
+@openedLightLinkColor: #c88161;
+
+@lightBgColor: #fff4db;
+@darkBgColor: #4d2e20;
+@darkBgUnderlineColor: #c3b5a7;
+
+@light2Color: #f9e9c6;
+@light3Color: #f0c058;
+@dark2Color: #2f363e;
+@dark2UnderlineColor: #bab5ac;
+@dark3Color: #23353f;
+
+@grayColor: #939492;
+
+@hrLineColor: @darkBgUnderlineColor;
+
+@plugColor: #eaeaea;
+
+@formFieldBorderColor: #b9b9b9;
+@formFieldErrorBorderColor: red;
+
+@splitBorderColor: #cbc4be;
+
+@tableBorderColor: #c4b7ab;
+
+/* === TRANSITIONS === */
+
+@animationSpeed: 0.2s;
+@linkTransition: color @animationSpeed linear, border-bottom-color @animationSpeed linear;

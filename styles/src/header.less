@@ -1,0 +1,162 @@
+/**
+ * Footer styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html body header {
+	display: block;
+	.size(100%, @headerHeight);
+	min-width: @minWidth;
+	background: @darkBgColor;
+	color: @lightContentColor;
+	overflow: hidden;
+	.fixed(0, auto, auto, 0);
+	z-index: 100;
+
+	.logo {
+		display: block;
+		.absolute(3px, auto, auto, 15px);
+	} // .logo
+
+	@firstLineLeft: 198px;
+	@firstLineRight: @mainMargin;
+
+	.choose_lang { // {{{1
+		display: block;
+		.absolute(15px, auto, auto, 204px - 6px);
+		white-space: nowrap;
+
+		a, span {
+			@size: 27px;
+
+			.linkNoLine;
+			display: block;
+			.size(@size);
+			float: left;
+			text-align: center;
+			text-transform: uppercase;
+			.customFont('PT Sans', 14px, 16px);
+			.box-sizing(border-box);
+			.border-radius(@size / 2);
+			padding-top: 5px;
+			color: @lightContentColor;
+			border: 1px solid transparent;
+			margin-left: 1px;
+
+			&:first-child { margin-left: 0; }
+		} // a, span
+
+		a:hover {
+			color: @activeLightLinkColor;
+			border-color: transparent;
+		} // a:hover
+
+		span, span:hover {
+			cursor: default;
+			color: @openedLightLinkColor;
+			border-color: #715749;
+		} // span, span:hover
+	} // .choose_lang }}}1
+
+	.first_line_wrap {
+		.absolute(0, 0);
+		display: block;
+		width: 100%;
+		max-width: 842px + @firstLineLeft + @firstLineRight;
+	} // .first_line_wrap
+
+	.first_line { // {{{1
+		display: table;
+		width: 100%;
+		padding-left: @firstLineLeft;
+		padding-right: @firstLineRight;
+		.box-sizing(border-box);
+		cursor: default;
+
+		nav.main_menu { // {{{2
+			display: table-cell;
+			vertical-align: top;
+			text-align: right;
+			padding-top: 35px - 15px;
+			white-space: nowrap;
+
+			&, a, .active, .separator {
+				.customFont('PT Sans', 16px, 18px);
+				font-weight: bold;
+				text-transform: uppercase;
+			} // &, a
+			
+			a, .active {
+				.linkNoLine;
+				display: inline-block;
+				color: @lightContentColor;
+				.relative;
+				cursor: pointer;
+
+				&:hover { color: @activeLightLinkColor; }
+			} // a, .active
+
+			.active, .active:hover {
+				cursor: default;
+				color: @openedLightLinkColor;
+			} // .active, .active:hover
+
+			a.active, a.active:hover { cursor: pointer; }
+			a.active:hover { color: @activeLightLinkColor; }
+
+			.separator {
+				display: inline-block;
+				width: 25px;
+				min-width: 25px;
+				max-width: 42px;
+				.relative;
+
+				&:before {
+					&:extend(.icon-clover);
+					.pseudoBlock;
+					.absolute(-13px, auto, auto, 50%);
+					margin-left: -(16px/2);
+				} // &:before
+			} // .separator
+
+			a { cursor: pointer; }
+		} // nav.main_menu }}}2
+	} // .first_line }}}1
+
+	nav.sub_menu { // {{{1
+		display: block;
+		text-align: right;
+		white-space: nowrap;
+		.absolute(75px - 21px, @mainMargin);
+		color: @lightContentColor;
+		cursor: default;
+
+		&, a, span {
+			.customFont('PT Sans', 13px, 15px);
+			text-transform: uppercase;
+		} // &, a, span
+
+		a, span {
+			.linkNoLine;
+			display: inline-block;
+			color: @lightContentColor;
+			margin-left: 13px;
+
+			&:hover { color: @activeLightLinkColor; }
+			&:first-child { margin-left: 0; }
+		} // a, span
+
+		span, span:hover {
+			cursor: default;
+			color: @openedLightLinkColor;
+		} // span, span:hover
+
+		a.active { color: @openedLightLinkColor; }
+		a.active:hover { color: @activeLightLinkColor; }
+
+		a { cursor: pointer; }
+	} // nav.sub_menu }}}1
+} // header
+
+html.main_page body header { height: 0; }

@@ -1,0 +1,46 @@
+/**
+ * Font-faces
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+// @fileName without extension
+.fontDefine(@fontName, @fileName: @fontName) {
+	font-family: '@{fontName}';
+
+	src: url('@{fontsPrefix}@{fileName}.eot?v=@{revision}');
+	src: local('@{fontName}'),
+		url('@{fontsPrefix}@{fileName}.woff?v=@{revision}') format('woff'),
+		url('@{fontsPrefix}@{fileName}.ttf?v=@{revision}') format('truetype'),
+		// see font name in .svg file, it must be equal to file-name!
+		url('@{fontsPrefix}@{fileName}.svg?v=@{revision}#@{fileName}') format('svg');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+.subFontDefine(@fontName, @fullFontName, @weight: normal, @style: normal, @fileName: @fontName) {
+	font-family: '@{fontName}';
+
+	src: url('@{fontsPrefix}@{fileName}.eot?v=@{revision}');
+	src: local('@{fullFontName}'),
+		url('@{fontsPrefix}@{fileName}.woff?v=@{revision}') format('woff'),
+		url('@{fontsPrefix}@{fileName}.ttf?v=@{revision}') format('truetype'),
+		// see font name in .svg file, it must be equal to file-name!
+		url('@{fontsPrefix}@{fileName}.svg?v=@{revision}#@{fileName}') format('svg');
+
+	font-weight: @weight;
+	font-style: @style;
+}
+
+@font-face { .fontDefine('Roboto', 'Roboto-Regular'); }
+@font-face { .fontDefine('PT Sans', 'PT_Sans-Regular'); }
+@font-face { .subFontDefine('PT Sans', 'PT Sans Bold', bold, normal, 'PT_Sans-Bold'); }
+@font-face { .fontDefine('fontello', 'fontello'); }
+
+/* === MIXINS === */
+
+// if all fonts is sans-serif
+.customFont(@fontName) { font-family: @fontName, sans-serif; }
+.customFont(@fontName, @fs) { font-family: @fontName, sans-serif; .fontMetrics(@fs); }
+.customFont(@fontName, @fs, @lh) { font-family: @fontName, sans-serif; .fontMetrics(@fs, @lh); }

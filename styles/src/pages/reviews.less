@@ -1,0 +1,119 @@
+/**
+ * "reviews" page styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html body section.reviews {
+	display: block;
+	overflow: hidden;
+	margin-top: -10px;
+	.relative;
+
+	ul.reviews_book { // {{{1
+		@offset: 210px + 139px;
+		@topH: 32px;
+		@bottomH: 118px;
+		@designOffset: 2px;
+
+		.resetCSS;
+		display: block;
+		.relative;
+		margin-top: @topH + 2px;
+		margin-bottom: @bottomH + (50px - 12px) - @designOffset;
+		min-height: 736px - @topH - @bottomH;
+
+		&:before {
+			&:extend(.icon-book_top);
+			.pseudoBlock;
+			.absolute(-(@topH + 2px), auto, auto, 50%);
+			margin-left: -@offset;
+			z-index: -1;
+		} // &:before
+
+		&:after {
+			&:extend(.icon-book_bottom);
+			.pseudoBlock;
+			.absolute(auto, auto, -(@bottomH - @designOffset), 50%);
+			margin-left: -@offset;
+			z-index: -1;
+		} // &:after
+
+		li { // {{{2
+			.resetCSS;
+			position: static;
+			display: block;
+			&:before { display: none; }
+
+			& > p, .signature {
+				display: block;
+				padding-left: 50%;
+				margin-left: -(@offset - (40px + 71px));
+				width: 620px;
+				z-index: 10;
+			} // p
+
+			.signature {
+				white-space: nowrap;
+				font-weight: bold;
+				line-height: 20px;
+				margin-top: 30px - 22px;
+
+				& > p {
+					float: right;
+				} // p
+
+				&:after {
+					.pseudoBlock;
+					clear: both;
+				} // &:after
+			} // p.signature
+
+			& + li { margin-top: 61px - 22px; }
+		} // li }}}2
+
+		li:first-child { // {{{2
+			overflow: hidden;
+			padding-top: 59px - 32px - 2px;
+
+			&:before {
+				&:extend(.icon-book_fill);
+				.pseudoBlock;
+				background-repeat: repeat-y;
+				height: 100%;
+				.absolute(0, auto, auto, 50%);
+				margin-left: -@offset;
+				z-index: -1;
+				margin-top: -@designOffset;
+			} // &:before
+		} // li:first-child }}}2
+	} // ul.reviews_book }}}1
+
+	.write_a_review { // {{{1
+		.linkNoLine;
+		cursor: pointer;
+		&:extend(.icon-strange_shaped_button);
+		background: none;
+		display: block;
+		.absolute(27px, auto, auto, 50%);
+		margin-left: -(400px + 47px + 19px);
+		z-index: 20;
+		.customFont('PT Sans', 15px, 17px);
+		font-weight: bold;
+		color: white;
+		text-align: center;
+		text-transform: uppercase;
+		.box-sizing(border-box);
+		padding-top: 27px - 13px;
+
+		&:before { &:extend(.icon-strange_shaped_button); }
+		&:after { &:extend(.icon-strange_shaped_button_active); }
+
+		.animatedIcon;
+
+		&:before, &:after { z-index: -1; }
+		&:hover { color: white; }
+	} // .write_a_review }}}1
+
+	form.add_review { display: none; }
+} // html body section.reviews

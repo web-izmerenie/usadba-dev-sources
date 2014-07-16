@@ -1,0 +1,136 @@
+/**
+ * Mixins collection
+ *
+ * @author Viacheslav Lotsmanov
+ * @author Fedor Pudeyan
+ * @version 0.2
+ */
+
+@import "lesshat";
+
+/* === FONTS === */
+
+.fontMetrics(@fontSize: 12px, @lineHeight: 14px) {
+	font-size: @fontSize;
+	line-height: @lineHeight;
+}
+
+/* === POSITION === */
+
+.relative(@top: auto, @right: auto, @bottom: auto, @left: auto) {
+	position: relative;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+}
+
+.absolute(@top: auto, @right: auto, @bottom: auto, @left: auto) {
+	position: absolute;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+}
+
+.absoluteStretch(@amount: 0) {
+	.absolute(@amount, @amount, @amount, @amount);
+}
+
+.fixed(@top: auto, @right: auto, @bottom: auto, @left: auto) {
+	position: fixed;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+}
+
+.fixedStretch(@amount: 0) {
+	.fixed(@amount, @amount, @amount, @amount);
+}
+
+/* === PSEUDO === */
+
+.pseudo(@content: '', @display: inline) {
+	content: @content;
+	display: @display;
+}
+
+.pseudoBlock(@content: '') {
+	.pseudo(@content, block);
+}
+
+/* === LINKS === */
+
+.linkUnderline(
+  @color: @linkColorUnderline,
+  @hoverColor: @activeLinkColorUnderline) {
+	border-bottom: 1px solid @color;
+	&:hover { border-bottom-color: @hoverColor; }
+}
+
+.simpleLink(
+  @color: @linkColor,
+  @hoverColor: @activeLinkColor,
+  @colorUnderline: @linkColorUnderline,
+  @hoverColorUnderline: @activeLinkColorUnderline) {
+	display: inline;
+	color: @color;
+	text-decoration: none;
+
+	&:hover { color: @hoverColor; }
+
+	.linkUnderline(@colorUnderline, @activeLinkColorUnderline);
+	.transition(@linkTransition);
+}
+
+.linkNoLine() {
+	.simpleLink();
+	border-bottom: 0;
+}
+
+.interactiveLink() {
+	.simpleLink();
+	border-bottom-style: dotted;
+	cursor: pointer;
+}
+
+/* === PATHS WRAPPERS === */
+
+.bgImg(@path) {
+	background-image: url('@{imgPrefix}@{path}?v=@{revision}');
+}
+
+.bg(@path, @addit) {
+	background: url('@{imgPrefix}@{path}?v=@{revision}') @addit;
+}
+
+/* === ANIMATED ICONS === */
+
+.animatedIcon() {
+	&:before, &:after {
+		.pseudoBlock;
+		.absolute(0, auto, auto, 0);
+		.opacity(1);
+		.transition(opacity @animationSpeed linear);
+	}
+
+	&:after {
+		.pseudoBlock;
+		.opacity(0);
+	}
+
+	&:hover {
+		&:before { .opacity(0); }
+		&:after { .opacity(1); }
+	}
+}
+
+// IE8 {{{1
+
+.IE8_animatedIcon() {
+	&:before, &:hover:after { visibility: visible; }
+	&:after, &:hover:before { visibility: hidden; }
+}
+
+// IE8 }}}1

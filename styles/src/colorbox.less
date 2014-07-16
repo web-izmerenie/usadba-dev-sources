@@ -1,0 +1,98 @@
+/*
+    Colorbox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper { .absolute(0, auto, auto, 0); z-index: 9999; overflow: hidden; }
+#cboxWrapper { max-width: none; }
+#cboxOverlay { position: fixed; .size(100%); }
+#cboxMiddleLeft, #cboxBottomLeft { clear: left; }
+#cboxContent { .relative; }
+#cboxLoadedContent { overflow: auto; -webkit-overflow-scrolling: touch;}
+#cboxTitle { margin: 0; }
+#cboxLoadingOverlay, #cboxLoadingGraphic { .absolute(0, auto, auto, 0); .size(100%); }
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow { cursor: pointer; }
+.cboxPhoto { float: left; margin: auto; border: 0; display: block; max-width: none; }
+.cboxIframe { .size(100%); display: block; border: 0; padding: 0; margin: 0; }
+#colorbox, #cboxContent, #cboxLoadedContent { .box-sizing(content-box); }
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of Colorbox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay { background: black; }
+
+#colorbox{ outline: 0; }
+#cboxContent {
+	background: white;
+	overflow: hidden;
+	padding: 44px;
+	.border-radius(20px);
+}
+.cboxIframe { background: white; }
+#cboxError { padding: 50px; border: 1px solid #ccc; }
+#cboxLoadedContent { }
+#cboxTitle { display: none !important; }
+#cboxCurrent { display: none !important; }
+#cboxLoadingOverlay { .bg('big_spinner.gif', no-repeat center center); }
+#cboxLoadingGraphic { .bg('big_spinner.gif', no-repeat center center); }
+
+/* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+#cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose { border: 0; padding: 0; margin: 0; overflow: visible; width: auto; background: none; }
+
+/* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+#cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active { outline: 0; }
+
+#cboxPrevious, #cboxNext, #cboxClose {
+	text-indent: -9999px;
+	white-space: nowrap;
+	.box-sizing(content-box);
+}
+
+#cboxPrevious, #cboxNext {
+	margin-top: -(26px);
+	padding: 14px;
+}
+
+#cboxPrevious {
+	.icon-gallery_left;
+	background: none;
+	display: block;
+	.absolute(50%, auto, auto, 0);
+
+	&:before { .icon-gallery_left; }
+	&:after  { .icon-gallery_left_active; }
+
+	.animatedIcon;
+
+	&:before, &:after { .absolute(14px, auto, auto, 14px); }
+}
+
+#cboxNext {
+	.icon-gallery_right;
+	background: none;
+	display: block;
+	.absolute(50%, 0);
+
+	&:before { .icon-gallery_right; }
+	&:after  { .icon-gallery_right_active; }
+
+	.animatedIcon;
+
+	&:before, &:after { .absolute(14px, 14px); }
+}
+
+#cboxClose {
+	.icon-closer_small;
+	background: none;
+	display: block;
+	.absolute(0, 0);
+	padding: 16px;
+
+	&:before { .icon-closer_small; }
+	&:after  { .icon-closer_small_active; }
+
+	.animatedIcon;
+
+	&:before, &:after { .absolute(16px, 16px); }
+}
