@@ -6,7 +6,7 @@
 
 PARENT_DEPLOY_SCRIPT=1
 
-[ -n "$WD" ] && cd "$WD"
+[ -n "$WD" ] && cd "$WD" && unset WD
 
 clr_info='\e[0;36m'
 clr_ok='\e[0;32m'
@@ -143,6 +143,7 @@ function please_type {
 
 if [ -n "$YOUR_SUBJECT" ]; then
 	source "$YOUR_SUBJECT"
+	unset YOUR_SUBJECT
 else
 	tasks=$(find ./_deploy -maxdepth 1 -type f | grep '\.sh$' | sort | tr '\n' ':')
 	
