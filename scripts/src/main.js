@@ -14,7 +14,7 @@ $(function domReady() {
 		baseUrl: getVal('tplPath') + '/scripts',
 
 		paths: {
-			'threejs': 'libs_not_build/three-r67.min.amd'
+			'threejs': 'three-r67.min.amd'
 		},
 
 		map: {
