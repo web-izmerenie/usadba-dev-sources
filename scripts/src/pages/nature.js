@@ -2,6 +2,8 @@
  * "Nature" page behavior
  *
  * @author Viacheslav Lotsmanov
+ * @license GNU/AGPLv3
+ * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
 define(['get_val', 'jquery'], function (getVal, $) {
@@ -75,7 +77,7 @@ $(function domReady() {
 				$elems.css('margin-top', distanceY + 'px');
 
 			} // resizeHandler() }}}3
-			
+
 			$(window).on('resize' + bindSuffix, resizeHandler);
 			resizeHandler();
 			setTimeout(resizeHandler, 1);

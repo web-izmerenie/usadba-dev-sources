@@ -2,6 +2,8 @@
  * Main module
  *
  * @author Viacheslav Lotsmanov
+ * @license GNU/AGPLv3
+ * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
 define(['basics/get_val', 'jquery'], function (getVal, $) {

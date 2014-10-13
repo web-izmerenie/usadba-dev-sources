@@ -3,6 +3,8 @@
  *
  * @author Viacheslav Lotsmanov
  * @encoding utf-8
+ * @license GNU/AGPLv3
+ * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
 define(['get_val'], function (getVal) {

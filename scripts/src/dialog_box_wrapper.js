@@ -2,6 +2,8 @@
  * Dialog Box wrapper (abstraction)
  *
  * @author Viacheslav Lotsmanov
+ * @license GNU/AGPLv3
+ * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
 define(['jquery', 'get_val', 'get_local_text', 'dialog_box'], function ($, getVal, getLocalText, DialogBox) {
