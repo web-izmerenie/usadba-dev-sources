@@ -5,7 +5,6 @@
  * @author Fedor Pudeyan
  * @version 0.2
  * @license none (public domain)
- * @see {@link https://github.com/web-izmerenie/usadba-dev-sources|GitHub}
  */
 
 @import "lesshat";
@@ -65,17 +64,17 @@
 /* === LINKS === */
 
 .linkUnderline(
-  @color: @linkColorUnderline,
-  @hoverColor: @activeLinkColorUnderline) {
+@color: @linkColorUnderline,
+@hoverColor: @activeLinkColorUnderline) {
 	border-bottom: 1px solid @color;
 	&:hover { border-bottom-color: @hoverColor; }
 }
 
 .simpleLink(
-  @color: @linkColor,
-  @hoverColor: @activeLinkColor,
-  @colorUnderline: @linkColorUnderline,
-  @hoverColorUnderline: @activeLinkColorUnderline) {
+@color: @linkColor,
+@hoverColor: @activeLinkColor,
+@colorUnderline: @linkColorUnderline,
+@hoverColorUnderline: @activeLinkColorUnderline) {
 	display: inline;
 	color: @color;
 	text-decoration: none;
