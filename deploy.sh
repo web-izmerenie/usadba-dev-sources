@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Author: Viacheslav Lotsmanov
-# License: GNU/GPLv3 by Free Software Foundation (https://github.com/unclechu/grunt-project-templates/blob/master/LICENSE)
+# License: GNU/GPLv3 (https://github.com/unclechu/web-front-end-grunt-template/blob/master/LICENSE)
 #
 
 PARENT_DEPLOY_SCRIPT=1
@@ -146,7 +146,7 @@ if [ -n "$YOUR_SUBJECT" ]; then
 	unset YOUR_SUBJECT
 else
 	tasks=$(find ./_deploy -maxdepth 1 -type f | grep '\.sh$' | sort | tr '\n' ':')
-	
+
 	while [ -n "$tasks" ]; do
 		task="${tasks#*:}"
 		task="${tasks:0:$[ ${#tasks} - ${#task} - 1 ]}"
