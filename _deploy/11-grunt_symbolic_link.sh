@@ -1,10 +1,1 @@
-#!/bin/bash
-#
-# Author: Viacheslav Lotsmanov
-# License: GNU/GPLv3 (https://github.com/unclechu/web-front-end-grunt-template/blob/master/LICENSE)
-#
-if [ -z "$PARENT_DEPLOY_SCRIPT" ]; then YOUR_SUBJECT="./_deploy/$(basename "$0")" WD="$(dirname "$0")/../" ../deploy.sh; exit "$?"; fi
-
-info_inline "Creating symbolic link to grunt-cli"
-rm ./grunt &>/dev/null
-if ln -s ./node_modules/.bin/grunt ./grunt &>/dev/null; then ok; else err; fi
+../web-front-end-grunt-template/_deploy/11-grunt_symbolic_link.sh
