@@ -6,7 +6,7 @@
  * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
-@import "strange_shaped_photos";
+@import "mixins/new_gallery";
 @import "menu_left_top";
 @import "panorama_blocks";
 
@@ -171,8 +171,7 @@ html.homestead_subpage body {
 
 			.panoramaBlocks;
 
-			ul.photos { .strangeShapedPhotos; }
-			.panorama + ul.photos, .detail_picture + ul.photos { margin-top: 54px; }
+			.photogallery { .newGallery; }
 
 			.prices { // {{{2
 				display: table;

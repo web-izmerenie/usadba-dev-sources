@@ -1,0 +1,93 @@
+/**
+ * new photogallery mixins
+ *
+ * @author Viacheslav Lotsmanov
+ * @license GNU/AGPLv3
+ * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
+ */
+
+.newGallery() {
+	@w: 940px;
+	@bigH: 454px;
+	@listElSize: 57px;
+
+	.resetCSS;
+	.fontMetrics(0, 0);
+	display: block;
+	.relative;
+	overflow: hidden;
+	.size(@w, auto);
+	margin: 0 auto;
+
+	.new_gallery_big {
+		.resetCSS;
+		display: block;
+		.size(@w, @bigH);
+		background: @plugColor;
+		overflow: hidden;
+		text-align: center;
+		.relative;
+		z-index: 0;
+
+		.prev, .next {
+			@bW: 44px;
+
+			.linkNoLine;
+			.resetCSS;
+			display: block;
+			.size(@bW, 100%);
+			background: black;
+			.opacity(0.2);
+			.transition(opacity @animationSpeed linear);
+			cursor: pointer;
+			z-index: 5;
+
+			&:hover { .opacity(0.4); }
+
+			&:before {
+				@w: 15px;
+				@h: 26px;
+				.absolute(50%, auto, auto, 50%);
+				margin-left: -(@w/2);
+				margin-top: -(@w/2);
+			}
+		}
+
+		.prev {
+			.absolute(0, auto, auto, 0);
+			&:before { .icon-new_gallery_left; .pseudoBlock; }
+		}
+
+		.next {
+			.absolute(0, 0);
+			&:before { .icon-new_gallery_right; .pseudoBlock; }
+		}
+
+		img {
+			display: block;
+			z-index: 2;
+			.size(100%);
+		}
+	}
+
+	ul.new_gallery_list {
+		@p: 6px;
+
+		.resetCSS;
+		display: block;
+		.size(@w + @p, auto);
+		margin-left: -@p;
+
+		&>li {
+			.resetCSS;
+			display: inline-block;
+			margin-left: @p;
+			margin-top: @p;
+
+			a {
+				.linkNoLine;
+				.resetCSS;
+			}
+		}
+	}
+}
