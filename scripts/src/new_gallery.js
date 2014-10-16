@@ -22,10 +22,22 @@ function ($, getVal, grayImg) {
 
 		function remove() { $(this).remove(); }
 
+		function preload(index) { // {{{1
+			if (index < 0) return;
+
+			var $el = $listEls.eq(index);
+			if ($el.data('loaded')) return;
+
+			$('<img/>').load(function () {
+				$el.data('loaded', true);
+				$(this).remove();
+			}).attr('src', $el.find('a').attr('href'));
+		} // preload() }}}1
+
 		/**
 		 * @param {string|number} step - String of action ('next' or 'prev') or specific index of <li>
 		 */
-		function setActive(step) { // {{{2
+		function setActive(step) { // {{{1
 			if (process) return; else process = true;
 
 			if ($listEls.size() < 1) {
@@ -40,19 +52,39 @@ function ($, getVal, grayImg) {
 			}
 
 			var showFromSide; // 'left' or 'right'
-			var toIndex;
+			var toIndex, preloadIndex_1 = -1, preloadIndex_2 = -1;
 
+			// get indexes {{{2
 			if (typeof step === 'number') {
 				toIndex = step;
+
+				// preloading
+				preloadIndex_1 = toIndex - 1;
+				if ($listEls.eq(preloadIndex_1).size() <= 0)
+					preloadIndex_1 = $listEls.last().index();
+				preloadIndex_2 = toIndex + 1;
+				if ($listEls.eq(preloadIndex_2).size() <= 0)
+					preloadIndex_2 = 0;
 			} else if (step === 'prev') {
 				toIndex = current - 1;
 				if ($listEls.eq(toIndex).size() <= 0)
 					toIndex = $listEls.last().index();
+
+				// preloading
+				preloadIndex_1 = toIndex - 1;
+				if ($listEls.eq(preloadIndex_1).size() <= 0)
+					preloadIndex_1 = $listEls.last().index();
 			} else if (step === 'next') {
 				toIndex = current + 1;
 				if ($listEls.eq(toIndex).size() <= 0)
 					toIndex = 0;
+
+				// preloading
+				preloadIndex_2 = toIndex + 1;
+				if ($listEls.eq(preloadIndex_2).size() <= 0)
+					preloadIndex_2 = 0;
 			} else throw new Error('Unknown type of "step" argument.');
+			// get indexes }}}2
 
 			if (toIndex === current) {
 				process = false;
@@ -63,10 +95,14 @@ function ($, getVal, grayImg) {
 			if ($li.size() <= 0)
 				throw new Error('OH SHI~ SOMETHING TERRIBLE HAPPENED');
 
-			if (toIndex < current)
+			preload(preloadIndex_1);
+			preload(preloadIndex_2);
+
+			if (toIndex < current) {
 				showFromSide = 'left';
-			else
+			} else {
 				showFromSide = 'right';
+			}
 
 			var $a = $li.find('a');
 			var src = $a.attr('href');
@@ -90,9 +126,9 @@ function ($, getVal, grayImg) {
 					current = toIndex;
 					process = false;
 				});
-		} // setActive() }}}2
+		} // setActive() }}}1
 
-		$listEls.each(function (i) { // {{{2
+		$listEls.each(function (i) { // {{{1
 			var $li = $(this);
 			var $a = $li.find('a');
 			var $img = $a.find('img');
@@ -111,7 +147,7 @@ function ($, getVal, grayImg) {
 				setActive(i);
 				return false;
 			});
-		}); // }}}2
+		}); // }}}1
 
 		setActive(0);
 
