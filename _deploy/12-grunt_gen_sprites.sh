@@ -1,1 +1,1 @@
-../web-front-end-grunt-template/_deploy/12-grunt_gen_sprites.sh
+../web-front-end-deploy/tasks/12-grunt_gen_sprites.sh

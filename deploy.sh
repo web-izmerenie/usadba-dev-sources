@@ -1,1 +1,1 @@
-web-front-end-grunt-template/deploy.sh
+web-front-end-deploy/deploy.sh
