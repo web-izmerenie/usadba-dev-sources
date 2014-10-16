@@ -63,10 +63,21 @@
 			&:before { .icon-new_gallery_right; .pseudoBlock; }
 		}
 
-		img {
+		.slider {
 			display: block;
-			z-index: 2;
 			.size(100%);
+			z-index: 2;
+			overflow: hidden;
+			.bg('spinner.png', center center no-repeat);
+
+			img {
+				display: block;
+				.absolute(0, auto, auto, 0);
+				.size(100%);
+				z-index: 1;
+
+				&.sliding { z-index: 2; }
+			}
 		}
 	}
 
@@ -77,17 +88,34 @@
 		display: block;
 		.size(@w + @p, auto);
 		margin-left: -@p;
+		z-index: 0;
 
 		&>li {
 			.resetCSS;
+			&:before { display: none; }
 			display: inline-block;
 			margin-left: @p;
 			margin-top: @p;
+			.size(@listElSize);
 
 			a {
 				.linkNoLine;
 				.resetCSS;
 			}
+
+			img {
+				display: block;
+				.size(100%);
+				.absolute(0, auto, auto, 0);
+				z-index: 1;
+				.opacity(1);
+				.transition(opacity @animationSpeed linear);
+
+				&.gray { .opacity(0); }
+			}
+
+			&.active img { .opacity(0); }
+			&.active img.gray { .opacity(0.6); }
 		}
 	}
 }
