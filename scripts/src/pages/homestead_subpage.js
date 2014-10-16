@@ -113,14 +113,14 @@ $(function domReady() {
 				return;
 			}
 
+			var $li = $listEls.eq(toIndex);
+			if ($li.size() <= 0)
+				throw new Error('OH SHI~ SOMETHING TERRIBLE HAPPENED');
+
 			if (toIndex < current)
 				showFromSide = 'left';
 			else
 				showFromSide = 'right';
-
-			var $li = $listEls.eq(toIndex);
-			if ($li.size() <= 0)
-				throw new Error('OH SHI~ SOMETHING TERRIBLE HAPPENED');
 
 			var $a = $li.find('a');
 			var src = $a.attr('href');
