@@ -36,13 +36,12 @@
 			.resetCSS;
 			display: block;
 			.size(@bW, 100%);
-			background: black;
-			.opacity(0.2);
-			.transition(opacity @animationSpeed linear);
+			background: rgba(0, 0, 0, 0.2);
+			.transition(background-color @animationSpeed linear);
 			cursor: pointer;
 			z-index: 5;
 
-			&:hover { .opacity(0.4); }
+			&:hover { background: rgba(0, 0, 0, 0.4); }
 
 			&:before {
 				@w: 15px;
