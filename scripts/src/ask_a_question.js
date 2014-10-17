@@ -20,7 +20,7 @@ $(function domReady() {
 				getLocalText('forms', 'ask_a_question_success_2'),
 			]);
 
-			$('header nav a.ask_a_question').on('click', function () {
+			$('a.ask_a_question').on('click', function () {
 				require(['popup'], function (popup) {
 					popup.show({ $container: $form });
 				});
