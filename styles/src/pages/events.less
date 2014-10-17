@@ -6,8 +6,13 @@
  * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
+@eventsListWidth: 848px;
+@eventsListTextColor: #2e3639;
+@eventsListDateColor: #717c80;
+
 html body .top_side main .events_list {
-	width: 848px;
+	display: block;
+	width: @eventsListWidth;
 	margin: 0 auto;
 	padding: @mainMargin;
 	font-size: 0;
@@ -15,7 +20,7 @@ html body .top_side main .events_list {
 
 	&:after { .pseudoBlock; clear: both; height: 62px - 6px; }
 
-	@textColor: #2e3639;
+	@textColor: @eventsListTextColor;
 
 	& > ul {
 		.resetCSS;
@@ -35,7 +40,8 @@ html body .top_side main .events_list {
 			& > h3 {
 				display: block;
 				color: @textColor;
-				.customFont('PT Sans Bold', 16px, 24px);
+				.customFont('PT Sans', 16px, 24px);
+				font-weight: bold;
 				text-transform: uppercase;
 
 				& > a {
@@ -52,7 +58,7 @@ html body .top_side main .events_list {
 			& > .date {
 				display: block;
 				text-transform: lowercase;
-				color: #717c80;
+				color: @eventsListDateColor;
 				.customFont('PT Sans', 14px, 16px);
 			}
 
@@ -77,4 +83,69 @@ html body .top_side main .events_list {
 	}
 
 	.pagination { display: none; }
+}
+
+@import "mixins/new_gallery";
+@import "menu_left_top";
+
+html body .top_side main .events_detail {
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	padding-bottom: 53px;
+
+	@w: @eventsListWidth;
+	@w2: 940px;
+	@textColor: @eventsListTextColor;
+
+	.back_to_events_list {
+		display: block;
+		width: @w2 + (@mainMargin * 2);
+		margin: 0 auto;
+
+		nav { .menuLeftTop; }
+	}
+
+	& > h1,
+	& > .date,
+	& > .text {
+		display: block;
+		width: @w;
+		margin: 0 auto;
+	}
+
+	& > h1 {
+		display: block;
+		text-align: center;
+		.customFont('PT Sans', 30px, 32px);
+		font-weight: bold;
+		color: @textColor;
+		width: @w;
+		text-transform: uppercase;
+		padding-top: 60px - 38px;
+	}
+
+	& > .date {
+		display: block;
+		width: @w;
+		color: @eventsListDateColor;
+		.customFont('PT Sans', 14px, 16px);
+		text-align: center;
+		text-transform: lowercase;
+		padding-top: 1px;
+	}
+
+	& > .text {
+		display: block;
+		width: @w;
+		color: @textColor;
+		.customFont('PT Sans', 16px, 24px);
+		text-align: left;
+		padding-top: 45px - 21px;
+	}
+
+	& > .photogallery {
+		.newGallery;
+		padding-top: 31px - 6px;
+	}
 }
