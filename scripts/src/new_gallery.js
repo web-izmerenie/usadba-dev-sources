@@ -60,19 +60,19 @@ function ($, getVal, grayImg) {
 
 				// preloading
 				preloadIndex_1 = toIndex - 1;
-				if ($listEls.eq(preloadIndex_1).size() <= 0)
+				if (preloadIndex_1 < 0)
 					preloadIndex_1 = $listEls.last().index();
 				preloadIndex_2 = toIndex + 1;
-				if ($listEls.eq(preloadIndex_2).size() <= 0)
+				if (preloadIndex_2 >= $listEls.size())
 					preloadIndex_2 = 0;
 			} else if (step === 'prev') {
 				toIndex = current - 1;
-				if ($listEls.eq(toIndex).size() <= 0)
+				if (toIndex < 0)
 					toIndex = $listEls.last().index();
 
 				// preloading
 				preloadIndex_1 = toIndex - 1;
-				if ($listEls.eq(preloadIndex_1).size() <= 0)
+				if (preloadIndex_1 < 0)
 					preloadIndex_1 = $listEls.last().index();
 			} else if (step === 'next') {
 				toIndex = current + 1;
@@ -81,7 +81,7 @@ function ($, getVal, grayImg) {
 
 				// preloading
 				preloadIndex_2 = toIndex + 1;
-				if ($listEls.eq(preloadIndex_2).size() <= 0)
+				if (preloadIndex_2 >= $listEls.size())
 					preloadIndex_2 = 0;
 			} else throw new Error('Unknown type of "step" argument.');
 			// get indexes }}}2
@@ -98,11 +98,10 @@ function ($, getVal, grayImg) {
 			preload(preloadIndex_1);
 			preload(preloadIndex_2);
 
-			if (toIndex < current) {
+			if (toIndex < current)
 				showFromSide = 'left';
-			} else {
+			else
 				showFromSide = 'right';
-			}
 
 			var $a = $li.find('a');
 			var src = $a.attr('href');
