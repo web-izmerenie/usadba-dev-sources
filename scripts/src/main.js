@@ -103,5 +103,10 @@ $(function domReady() {
 		require(['pages/error_404']);
 	}
 
+	// photogallery
+	require(['new_gallery'], function (handler) {
+		$('main .photogallery').each(handler);
+	});
+
 }); // domReady()
 }); // define()

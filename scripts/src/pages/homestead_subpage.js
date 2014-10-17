@@ -61,11 +61,6 @@ $(function domReady() {
 
 	}); // $activeRooms.each() // }}}1
 
-	// photogallery
-	require(['new_gallery'], function (handler) {
-		$gallery.each(handler);
-	});
-
 	require(['panorama_blocks'], function (handler) {
 		handler($panorama, $detailPicture);
 	});
