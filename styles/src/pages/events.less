@@ -82,7 +82,12 @@ html body .top_side main .events_list {
 		}
 	}
 
-	.pagination { display: none; }
+	.pagination {
+		&:before { .pseudoBlock; clear: both; height: @mainMargin; }
+		display: block;
+		.customFont('PT Sans', 16px, 24px);
+		color: @textColor;
+	}
 }
 
 @import "mixins/new_gallery";
