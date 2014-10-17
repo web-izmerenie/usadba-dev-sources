@@ -6,23 +6,13 @@
  * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
+@import "mixins/new_gallery";
+
 html body section.corporate {
 	display: block;
 	.box-sizing(border-box);
 	max-width: @maxWidth;
 	margin: 0 auto;
 
-	.big_section_photo {
-		display: block;
-		.background-size(cover);
-		.size(100%, auto);
-		max-width: @maxWidth - (@mainMargin * 2);
-		margin: 0 auto;
-		overflow: hidden;
-
-		img {
-			display: block;
-			.size(100%, auto);
-		} // img
-	} // .big_section_photo
+	.photogallery { .newGallery; }
 } // html body section.corporate
