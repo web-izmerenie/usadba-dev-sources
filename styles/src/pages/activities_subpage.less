@@ -6,7 +6,7 @@
  * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
-@import "strange_shaped_photos";
+@import "mixins/new_gallery";
 
 html.activities_subpage body .section_wrap {
 	display: block;
@@ -169,10 +169,7 @@ html.activities_subpage body .section_wrap {
 			&:after { .pseudoBlock; clear: both; }
 		} // .centered_content }}}2
 
-		ul.photos {
-			.strangeShapedPhotos;
-			margin-top: 43px;
-		} // ul.photos
+		.photogallery { .newGallery; }
 
 		table.info { // {{{2
 			.resetCSS;
