@@ -1,1 +1,1 @@
-../web-front-end-grunt-template/_deploy/20-deprivation_privilegies.sh
+../web-front-end-deploy/tasks/20-deprivation_privilegies.sh

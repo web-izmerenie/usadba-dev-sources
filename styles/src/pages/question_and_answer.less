@@ -1,0 +1,114 @@
+/**
+ * "question and answer" page styles
+ *
+ * @author Viacheslav Lotsmanov
+ * @license GNU/AGPLv3
+ * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
+ */
+
+html body .top_side main section.question_and_answer {
+	display: block;
+	width: 960px;
+	margin: 0 auto;
+	font-size: 0;
+	line-height: 0;
+
+	&:after { .pseudoBlock; clear: both; height: 50px; }
+
+	.ask_a_question { // {{{1
+		.linkNoLine;
+		cursor: pointer;
+		&:extend(.icon-strange_shaped_button);
+		background: none;
+		display: block;
+		z-index: 20;
+		.customFont('PT Sans', 15px, 17px);
+		font-weight: bold;
+		color: white;
+		text-align: center;
+		text-transform: uppercase;
+		.box-sizing(border-box);
+		padding-top: 27px - 13px;
+		.relative;
+		float: left;
+
+		&:before { &:extend(.icon-strange_shaped_button); }
+		&:after { &:extend(.icon-strange_shaped_button_active); }
+
+		.animatedIcon;
+
+		&:before, &:after { z-index: -1; }
+		&:hover { color: white; }
+	} // .write_a_review }}}1
+
+	& > ul { // {{{1
+		.resetCSS;
+		display: block;
+		width: 704px;
+		float: right;
+		margin-right: 46px;
+		margin-top: -@mainMargin2;
+
+		&:after { .pseudoBlock; clear: both; }
+
+		& > li {
+			.resetCSS;
+			display: block;
+			&:before { display: none; }
+			margin-top: @mainMargin2;
+
+			dl {
+				display: block;
+
+				@w: 644px;
+
+				& > * {
+					display: block;
+					width: @w;
+					.customFont('PT Sans', 16px, 24px);
+					.box-sizing(border-box);
+					padding: 0 40px;
+					padding-top: 47px - 18px;
+					padding-bottom: 35px - 6px;
+					.border-radius(20px);
+					.relative;
+				}
+
+				& > dt {
+					background: white;
+					color: #2e3639;
+
+					&:before {
+						.pseudoBlock;
+						.size(0);
+						.fontMetrics(0, 0);
+						.absolute(100%, auto, auto, 20px);
+						border: 12px solid white;
+						border-bottom-color: transparent;
+						border-right-color: transparent;
+					}
+				}
+
+				& > dd {
+					@bgColor: #8b5137;
+
+					background: @bgColor;
+					color: white;
+					margin-left: 60px;
+
+					&:after {
+						.pseudoBlock;
+						.size(0);
+						.fontMetrics(0, 0);
+						.absolute(100%, 20px);
+						border: 12px solid @bgColor;
+						border-bottom-color: transparent;
+						border-left-color: transparent;
+					}
+				}
+
+				& > dt + dd { margin-top: @mainMargin2; }
+			}
+		}
+	} // <ul> }}}1
+}

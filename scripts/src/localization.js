@@ -34,6 +34,8 @@ define(['get_val'], function (getVal) {
 				'write_a_review_success_2': 'Your review will be published after validation by moderator.',
 				'ask_a_question_success_1': 'Thank you for your question',
 				'ask_a_question_success_2': 'We will contact you shortly.',
+				'reserve_success_1': '',
+				'reserve_success_2': '',
 			},
 
 		},
@@ -62,6 +64,8 @@ define(['get_val'], function (getVal) {
 				'ask_a_question_success_1': 'Благодарим за обращение к нам',
 				'ask_a_question_success_2': 'Мы обязательно свяжемся с вами в ближайшее время.<br/>'+
 					'Усадьба Парфенова — дом, где вас любят и ждут!',
+				'reserve_success_1': 'Запрос на бронь отправлен',
+				'reserve_success_2': 'В ближайшее время наш менеджер свяжется с вами.',
 			},
 
 		},

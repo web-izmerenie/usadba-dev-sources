@@ -6,7 +6,7 @@
  * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
-@import "strange_shaped_photos";
+@import "mixins/new_gallery";
 @import "menu_left_top";
 @import "panorama_blocks";
 
@@ -171,8 +171,7 @@ html.homestead_subpage body {
 
 			.panoramaBlocks;
 
-			ul.photos { .strangeShapedPhotos; }
-			.panorama + ul.photos, .detail_picture + ul.photos { margin-top: 54px; }
+			.photogallery { .newGallery; }
 
 			.prices { // {{{2
 				display: table;
@@ -245,6 +244,41 @@ html.homestead_subpage body {
 					} // dd
 				} // dl
 			} // .prices }}}2
+
+			.reservation { // {{{2
+				display: block;
+				.fontMetrics(0, 0);
+				padding-bottom: 59px;
+
+				a.reserve {
+					.linkNoLine;
+					display: block;
+					.size(293px, 64px);
+					color: white;
+					text-transform: uppercase;
+					.customFont('PT Sans', 22px, 24px);
+					font-weight: bold;
+					text-align: center;
+					.box-sizing(border-box);
+					.relative;
+					margin: 0 auto;
+					cursor: pointer;
+					padding-top: 20px;
+
+					&:before { .icon-strange_shaped_button_big; }
+					&:after { .icon-strange_shaped_button_big_active; }
+
+					&:before, &:after { z-index: -1; }
+
+					.animatedIcon;
+
+					&:hover {
+						color: white;
+					}
+				}
+
+				form { display: none; }
+			} // .reservation }}}2
 		} // main }}}1
 	} // .section_wrap
 

@@ -1,1 +1,1 @@
-../web-front-end-grunt-template/_deploy/13-grunt_default_tasks.sh
+../web-front-end-deploy/tasks/13-grunt_default_tasks.sh

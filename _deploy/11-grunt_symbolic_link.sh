@@ -1,1 +1,1 @@
-../web-front-end-grunt-template/_deploy/11-grunt_symbolic_link.sh
+../web-front-end-deploy/tasks/11-grunt_symbolic_link.sh
