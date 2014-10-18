@@ -15,7 +15,7 @@ define(['get_val', 'jquery', 'get_local_text'], function (getVal, $, getLocalTex
 	return function popupFormInit(actionName, dataToExtend, successMessagesArr) {
 
 		var $form = $(this);
-		var $inputs = $form.find('label.text, label.textarea');
+		var $inputs = $form.find('label.text, label.textarea, label.date');
 
 		$form.detach().prependTo('body');
 

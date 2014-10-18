@@ -7,7 +7,8 @@
  */
 
 html body > form.add_review, // "write a review" form (uses as template for other forms) {{{1
-html body > form.add_question {
+html body > form.add_question,
+html body > form.reservation_form {
 	@w: 482px;
 	@h: 389px + (24px + 16px);
 	@pLR: 30px;
@@ -28,7 +29,7 @@ html body > form.add_question {
 
 	@labelInterval: 9px;
 
-	label.text, label.textarea { // {{{2
+	label.text, label.textarea, label.choose, label.date { // {{{2
 		display: block;
 		border: 1px solid @formFieldBorderColor;
 		.box-sizing(border-box);
@@ -44,7 +45,7 @@ html body > form.add_question {
 		&.focused { border-color: @light3Color; }
 	} // label.text, label.textarea }}}2
 
-	label.text { // {{{2
+	label.text, label.choose, label.date { // {{{2
 		@lw: 227px; // label width
 		@lh: 31px; // label height
 		@fontSize: 16px;
@@ -208,3 +209,204 @@ html body > form.add_question { // "ask a question" {{{1
 		& > textarea { height: @actualHeight - @pt - @pb; }
 	} // label.textarea }}}2
 } // "ask a question" }}}1
+
+html body > form.reservation_form { // {{{1
+	@w: 363px;
+	@h: 371px;
+	@pl: 38px;
+
+	.size(@w, @h);
+	margin-top: -(@h / 2);
+	margin-left: -(@w / 2);
+
+	ul.houses_list { display: none; }
+
+	label { margin-left: @pl; }
+
+	label.choose { // {{{2
+		& > span { display: none; }
+		@w: 191px;
+
+		input {
+			width: @w - (8px * 2);
+			z-index: 0;
+		}
+
+		.show_list {
+			@px: 9px;
+			@py: 11px;
+
+			display: block;
+			padding: @py @px;
+			padding-left: @px + @w;
+			.size(16px, 9px);
+			.absolute(0, 0);
+			z-index: 5;
+			cursor: pointer;
+
+			&:before { .icon-v_small; }
+			&:after { .icon-v_small_active; }
+
+			&.opened {
+				&:before { .icon-v_small_invert; }
+				&:after { .icon-v_small_invert_active; }
+			}
+
+			.animatedIcon;
+
+			&:before, &:after { .absolute(@py, @px); }
+		}
+	} // label.choose }}}2
+
+	// chooser lists {{{2
+
+	ul.houses_chooser,
+	ul.people_count_chooser {
+		.resetCSS;
+		display: block;
+		z-index: 200;
+		.absolute(105px, auto, auto, 68px);
+		border: 1px solid @formFieldBorderColor;
+		border-top: 0;
+		overflow: hidden;
+
+		&>li {
+			.resetCSS;
+			display: block;
+			background: white;
+			line-height: 31px - (4px * 2);
+			padding: 4px 8px;
+			cursor: pointer;
+			.box-sizing(border-box);
+			width: 227px - 2px;
+			overflow: hidden;
+			.transition(color @animationSpeed linear);
+
+			&:hover { color: @activeLinkColor; }
+			&.current {
+				font-weight: bold;
+				cursor: default;
+				&:hover { color: @contentColor; }
+			}
+		}
+	}
+
+	ul.people_count_chooser {
+		top: 105px + 40px;
+	}
+
+	// chooser lists }}}2
+
+	label.date {
+		width: 110px;
+		white-space: nowrap;
+		display: inline-block;
+
+		&>span, &>input { width: 90px; white-space: nowrap; }
+	}
+
+	label.date + label.date { margin-left: 3px; }
+
+	label.date + label.text { margin-top: 3px; }
+} // reservation form }}}1
+
+html body .reserve_form_datepicker { // {{{1
+	background: white;
+	margin-left: -1px;
+	margin-top: 4px;
+	border: 1px solid @formFieldBorderColor;
+	.border-radius(3px);
+	.customFont('PT Sans', 14px, 20px);
+	color: @contentColor;
+	padding: 6px;
+	width: 191px;
+	padding-bottom: 7px;
+	.box-sizing(border-box);
+
+	table.ui-datepicker-calendar {
+		width: 100%;
+
+		th { font-weight: bold; line-height: 24px; }
+		th, td { text-align: center; }
+
+		a {
+			.linkNoLine;
+
+			display: block;
+			.size(100%);
+			text-align: center;
+			.transition(
+				color @animationSpeed linear,
+				background-color @animationSpeed linear);
+
+			&.ui-state-default {
+				background: white;
+				color: @contentColor;
+			}
+
+			&.ui-state-highlight {
+				background: white;
+				color: #b9b9b9;
+			}
+
+			&.ui-state-active {
+				background: #2e363f;
+				color: white;
+			}
+
+			&:hover {
+				background: #b9b9b9;
+				color: @contentColor;
+			}
+		}
+	}
+
+	.ui-datepicker-header {
+		display: block;
+		text-align: center;
+		.relative;
+		padding-bottom: 3px;
+		margin-top: -1px;
+
+		@pnW: 9px;
+		@pnH: 17px;
+
+		.ui-datepicker-prev, .ui-datepicker-next {
+			display: block;
+			.size(@pnW, @pnH);
+			.fontMetrics(0, 0);
+			overflow: hidden;
+			text-indent: 40000px;
+			white-space: nowrap;
+			cursor: pointer;
+		}
+
+		.ui-datepicker-prev {
+			&:before { .icon-slim_arrow_left; }
+			&:after { .icon-slim_arrow_left_active; }
+		}
+
+		.ui-datepicker-next {
+			&:before { .icon-slim_arrow_right; }
+			&:after { .icon-slim_arrow_right_active; }
+		}
+
+		@xp: 5px;
+		@yp: 2px;
+
+		.ui-datepicker-prev, .ui-datepicker-next {
+			.animatedIcon;
+			padding: @yp @xp;
+		}
+
+		.ui-datepicker-prev {
+			.absolute(0, auto, auto, 0);
+			&:before, &:after { .absolute(@yp, auto, auto, @xp); }
+		}
+
+		.ui-datepicker-next {
+			.absolute(0, 0);
+			&:before, &:after { .absolute(@yp, @xp); }
+		}
+	}
+} // .reserve_form_datepicker }}}1

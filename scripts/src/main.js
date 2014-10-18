@@ -25,6 +25,7 @@ $(function domReady() {
 				/* short name aliases */
 
 				// outsource modules
+				'jquery-ui': 'libs/jquery-ui-1.11.2',
 				'jquery.cookie': 'libs/jquery.cookie-1.4.0',
 				'jquery.mousewheel': 'libs/jquery.mousewheel-3.1.11',
 				'jquery.colorbox': 'libs/jquery.colorbox-1.5.10',
