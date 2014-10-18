@@ -114,7 +114,8 @@ html body > form.reservation_form {
 	} // label.textarea }}}2
 
 	label.required > span:after { .pseudoBlock('*'); display: inline-block; }
-	label.text.error, label.textarea.error { border-color: @formFieldErrorBorderColor; }
+	label.text.error, label.textarea.error,
+	label.date.error, label.choose.error { border-color: @formFieldErrorBorderColor; }
 
 	label.submit { // {{{2
 		&:extend(.icon-strange_shaped_button_small);

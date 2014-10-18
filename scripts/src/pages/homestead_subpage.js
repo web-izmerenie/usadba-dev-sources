@@ -144,7 +144,9 @@ $(function domReady() {
 				$inputHouseName
 					.removeAttr('readonly')
 					.val( $el.data('name') )
-					.attr('readonly', 'readonly');
+					.focus()
+					.attr('readonly', 'readonly')
+					.blur();
 				$inputHouseId.val( $el.data('id') );
 
 				$peopleCountChooserUl.html('');
@@ -167,7 +169,9 @@ $(function domReady() {
 						$inputPeopleCountPublic
 							.removeAttr('readonly')
 							.val( $li.data('public') )
-							.attr('readonly', 'readonly');
+							.focus()
+							.attr('readonly', 'readonly')
+							.blur();
 						$inputPeopleCountHidden.val( $li.data('hidden') );
 
 						$choosePeopleCount.find('.show_list').trigger('click');
@@ -238,6 +242,7 @@ $(function domReady() {
 				$(document).on('click' + bindSuffix, function (event) {
 					return chooserDocumentClickHandler(event, $housesChooserUl, $sb);
 				});
+				$inputHouseName.focus().blur();
 				return false;
 			});
 			$l.append($sb);
@@ -262,6 +267,7 @@ $(function domReady() {
 				$(document).on('click' + bindSuffix, function (event) {
 					return chooserDocumentClickHandler(event, $peopleCountChooserUl, $sb);
 				});
+				$inputPeopleCountPublic.focus().blur();
 				return false;
 			});
 			$l.append($sb);
