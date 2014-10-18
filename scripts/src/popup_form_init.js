@@ -158,6 +158,12 @@ define(['get_val', 'jquery', 'get_local_text'], function (getVal, $, getLocalTex
 						messages: successMessagesArr,
 						closeCallback: function () {
 							$form.find('input, textarea').val('').trigger('blur');
+
+							if (actionName === 'reserve') {
+								$form.find('ul.houses_chooser>li').removeClass('current');
+								$form.find('ul.people_count_chooser>li').remove();
+							}
+
 							end();
 							$form.find('.closer').trigger('click');
 						},
