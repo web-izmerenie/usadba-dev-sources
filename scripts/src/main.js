@@ -105,8 +105,11 @@ $(function domReady() {
 	}
 
 	// photogallery
-	require(['new_gallery'], function (handler) {
-		$('main .photogallery').each(handler);
+	$('main .photogallery').each(function () {
+		var self = this;
+		require(['new_gallery'], function (handler) {
+			handler.call(self);
+		});
 	});
 
 }); // domReady()
