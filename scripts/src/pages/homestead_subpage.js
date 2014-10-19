@@ -282,17 +282,20 @@ $(function domReady() {
 		var $inputIn = $labelIn.find('input');
 		var $inputOut = $labelOut.find('input');
 
-		require(['jquery-ui-datepicker'], function () {
-			var p = {
-				beforeShow: function(input, inst) {
-					$('#ui-datepicker-div').addClass('reserve_form_datepicker');
-				},
-				onSelect: function(dateText, inst) {
-					$(inst.input).blur();
-				}
-			};
-			$inputIn.datepicker(p);
-			$inputOut.datepicker(p);
+		require(['modernizr'], function (Modernizr) {
+			if (!Modernizr.inputtypes.date)
+				require(['jquery-ui-datepicker'], function () {
+					var p = {
+						beforeShow: function(input, inst) {
+							$('#ui-datepicker-div').addClass('reserve_form_datepicker');
+						},
+						onSelect: function(dateText, inst) {
+							$(inst.input).blur();
+						}
+					};
+					$inputIn.datepicker(p);
+					$inputOut.datepicker(p);
+				});
 		});
 
 		$reserve.find('.reserve').on('click', function () {
