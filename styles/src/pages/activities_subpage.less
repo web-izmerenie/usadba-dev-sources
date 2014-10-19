@@ -151,23 +151,39 @@ html.activities_subpage body .section_wrap {
 			margin-top: 58px - 18px;
 		} // .general_description }}}2
 
-		.centered_content { // {{{2
+		.sticky_block { // {{{2
+			@w: @minWidth - @mainMargin - @superOffset;
+			@photoSize: 212px;
+			@pL: 37px;
+
 			display: block;
-			width: @minWidth - @mainMargin - @superOffset;
+			width: @w;
 			margin: 0 auto;
-			margin-top: 37px - 6px;
+			margin-top: 31px;
+			.fontMetrics(0, 0);
 
-			img.cirle_photo {
-				@size: 212px;
+			.photo {
+				display: inline-block;
+				vertical-align: middle;
 
-				.size(@size);
-				.border-radius(@size / 2);
-				margin-bottom: 0;
-				margin-right: 37px;
-			} // .cirle_photo
+				img {
+					.size(@photoSize);
+					.border-radius(@photoSize / 2);
+				}
+			}
 
-			&:after { .pseudoBlock; clear: both; }
-		} // .centered_content }}}2
+			.text {
+				display: inline-block;
+				width: 100%;
+				vertical-align: middle;
+				font: @contentFont;
+			}
+
+			.photo + .text {
+				margin-left: @pL;
+				width: @w - @photoSize - @pL;
+			}
+		} // .sticky_block }}}2
 
 		.photogallery { .newGallery; }
 
