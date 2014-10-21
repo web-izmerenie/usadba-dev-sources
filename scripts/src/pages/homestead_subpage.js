@@ -282,20 +282,33 @@ $(function domReady() {
 		var $inputIn = $labelIn.find('input');
 		var $inputOut = $labelOut.find('input');
 
-		require(['modernizr'], function (Modernizr) {
-			if (!Modernizr.inputtypes.date)
-				require(['jquery-ui-datepicker'], function () {
-					var p = {
-						beforeShow: function(input, inst) {
-							$('#ui-datepicker-div').addClass('reserve_form_datepicker');
-						},
-						onSelect: function(dateText, inst) {
-							$(inst.input).blur();
-						}
-					};
-					$inputIn.datepicker(p);
-					$inputOut.datepicker(p);
+		function initDatepicker() {
+			require(['jquery-ui-datepicker'], function () {
+				var p = {
+					beforeShow: function(input, inst) {
+						$('#ui-datepicker-div').addClass('reserve_form_datepicker');
+					},
+					onSelect: function(dateText, inst) {
+						$(inst.input).blur();
+					}
+				};
+				$inputIn.attr('type', 'text').datepicker(p);
+				$inputOut.attr('type', 'text').datepicker(p);
+			});
+		}
+
+		require(['mobile-detect'], function (MobileDetect) {
+			var md = new MobileDetect(window.navigator.userAgent);
+			if (md.mobile()) {
+				require(['modernizr'], function (Modernizr) {
+					if (!Modernizr.inputtypes.date)
+						initDatepicker();
 				});
+			} else {
+				initDatepicker();
+			}
+		}, function (err) {
+			initDatepicker();
 		});
 
 		$reserve.find('.reserve').on('click', function () {
