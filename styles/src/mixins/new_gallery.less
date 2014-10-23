@@ -69,13 +69,32 @@
 			overflow: hidden;
 			.bg('spinner.png', center center no-repeat);
 
-			img {
+			.wrap {
 				display: block;
 				.absolute(0, auto, auto, 0);
 				.size(100%);
+				overflow: hidden;
+				text-align: center;
 				z-index: 1;
+				background: @plugColor;
+				text-align: center;
 
 				&.sliding { z-index: 2; }
+			}
+
+			.wrap > * {
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			.wrap > .center_helper {
+				.size(0, 100%);
+			}
+
+			.wrap > img {
+				.size(auto);
+				max-width: 100%;
+				max-height: 100%;
 			}
 		}
 	}

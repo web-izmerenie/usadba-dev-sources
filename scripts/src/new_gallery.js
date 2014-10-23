@@ -106,22 +106,24 @@ function ($, getVal, grayImg) {
 			var $a = $li.find('a');
 			var src = $a.attr('href');
 
-			var $slideImg = $('<img/>', {
-					class: 'sliding',
-					src: src
-				})
-				.css('left', ((showFromSide === 'left') ? '-100%' : '100%'));
+			var $slideWrap = $('<div/>').addClass('wrap').addClass('sliding');
+			var $slideImg = $('<img/>', { src: src });
+
+			$slideWrap
+				.css('left', ((showFromSide === 'left') ? '-100%' : '100%'))
+				.append('<span class="center_helper"></span>')
+				.append( $slideImg );
 
 			$listEls.removeClass('active');
 			$li.addClass('active');
 
-			$slider.append($slideImg);
-			$slideImg.animate(
+			$slider.append($slideWrap);
+			$slideWrap.animate(
 				{ left: 0 },
 				getVal('animationSpeed')*4,
 				function () {
-					$slider.find('img:not(.sliding)').remove();
-					$slideImg.removeClass('sliding');
+					$slider.find('>.wrap:not(.sliding)').remove();
+					$slideWrap.removeClass('sliding');
 					current = toIndex;
 					process = false;
 				});
