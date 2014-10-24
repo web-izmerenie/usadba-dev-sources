@@ -18,7 +18,11 @@ html body .top_side main .events_list {
 	font-size: 0;
 	line-height: 0;
 
-	&:after { .pseudoBlock; clear: both; height: 62px - 6px; }
+	&:after {
+		.pseudoBlock;
+		clear: both;
+		height: 62px - 6px;
+	}
 
 	@textColor: @eventsListTextColor;
 
@@ -78,7 +82,11 @@ html body .top_side main .events_list {
 			& > img + .text { padding-top: 8px + 4px; }
 
 			float: left;
-			&:nth-child(even) { float: right; }
+			clear: left;
+			&:nth-child(even) {
+				float: right;
+				clear: none;
+			}
 		}
 	}
 
