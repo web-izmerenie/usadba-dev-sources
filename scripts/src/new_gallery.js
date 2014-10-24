@@ -128,17 +128,8 @@ function ($, getVal, grayImg) {
 						current = toIndex;
 						process = false;
 					}
-					if ($prevEl.size() > 0) {
-						$prevEl.animate(
-							{ opacity: 0 },
-							getVal('animationSpeed'),
-							function () {
-								$prevEl.remove();
-								end();
-							});
-					} else {
-						end();
-					}
+					$prevEl.remove();
+					end();
 				});
 		} // setActive() }}}1
 
