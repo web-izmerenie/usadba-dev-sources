@@ -122,10 +122,23 @@ function ($, getVal, grayImg) {
 				{ left: 0 },
 				getVal('animationSpeed')*4,
 				function () {
-					$slider.find('>.wrap:not(.sliding)').remove();
-					$slideWrap.removeClass('sliding');
-					current = toIndex;
-					process = false;
+					var $prevEl = $slider.find('>.wrap:not(.sliding)');
+					function end() {
+						$slideWrap.removeClass('sliding');
+						current = toIndex;
+						process = false;
+					}
+					if ($prevEl.size() > 0) {
+						$prevEl.animate(
+							{ opacity: 0 },
+							getVal('animationSpeed'),
+							function () {
+								$prevEl.remove();
+								end();
+							});
+					} else {
+						end();
+					}
 				});
 		} // setActive() }}}1
 
