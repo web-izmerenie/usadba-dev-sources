@@ -37,9 +37,10 @@ html body .top_side main .events_list {
 			.resetCSS;
 			&:before { display: none; }
 
-			display: block;
+			display: inline-block;
 			width: 401px;
 			padding-top: 28px;
+			vertical-align: top;
 
 			& > h3 {
 				display: block;
@@ -81,11 +82,8 @@ html body .top_side main .events_list {
 
 			& > img + .text { padding-top: 8px + 4px; }
 
-			float: left;
-			clear: left;
 			&:nth-child(even) {
-				float: right;
-				clear: none;
+				margin-left: 46px;
 			}
 		}
 	}
