@@ -10,6 +10,8 @@
 @eventsListTextColor: #2e3639;
 @eventsListDateColor: #717c80;
 
+@import "mixins/ajax_page_loader";
+
 html body .top_side main .events_list {
 	display: block;
 	width: @eventsListWidth;
@@ -90,9 +92,12 @@ html body .top_side main .events_list {
 
 	.pagination {
 		&:before { .pseudoBlock; clear: both; height: @mainMargin; }
+
 		display: block;
 		.customFont('PT Sans', 16px, 24px);
 		color: @textColor;
+
+		.ajax_page_loader { .ajaxPageLoader(); }
 	}
 }
 

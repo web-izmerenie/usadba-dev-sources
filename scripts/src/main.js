@@ -104,6 +104,10 @@ $(function domReady() {
 		require(['pages/error_404']);
 	}
 
+	if ($('.events_list').size() > 0) {
+		require(['pages/events']);
+	}
+
 	// photogallery
 	$('main .photogallery').each(function () {
 		var self = this;

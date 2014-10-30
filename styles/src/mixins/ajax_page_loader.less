@@ -1,0 +1,24 @@
+/**
+ * ajax page loader mixin
+ *
+ * @author Viacheslav Lotsmanov
+ * @license GNU/AGPLv3
+ * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
+ */
+
+.ajaxPageLoader() {
+	display: block;
+	margin: 0 auto;
+	.size(80px, 0);
+	.bg('spinner.png', center center no-repeat);
+	.fontMetrics(0, 0);
+	margin-top: 0;
+	.transition(
+		height @animationSpeed linear,
+		margin-top @animationSpeed);
+
+	&.process {
+		.size(80px);
+		margin-top: @mainMargin;
+	}
+}

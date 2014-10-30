@@ -52,7 +52,9 @@ define(function () {
 			rel: 'photos',
 		},
 
-		mobileMainPage: '/homestead/'
+		mobileMainPage: '/homestead/',
+
+		ajaxHandlerURL: '/ajax/handler.php'
 
 	};
 
