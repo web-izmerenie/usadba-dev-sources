@@ -6,23 +6,24 @@
  * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
+@import "mixins/ajax_page_loader";
+
 html body section.reviews {
 	display: block;
 	overflow: hidden;
 	margin-top: -10px;
 	.relative;
 
+	@w: 620px;
+	@offset: 210px + 139px;
+	@topH: 32px;
+	@bottomH: 118px;
+	@designOffset: 2px;
 	ul.reviews_book { // {{{1
-		@offset: 210px + 139px;
-		@topH: 32px;
-		@bottomH: 118px;
-		@designOffset: 2px;
-
 		.resetCSS;
 		display: block;
 		.relative;
 		margin-top: @topH + 2px;
-		margin-bottom: @bottomH + (50px - 12px) - @designOffset;
 		min-height: 736px - @topH - @bottomH;
 
 		&:before {
@@ -32,14 +33,6 @@ html body section.reviews {
 			margin-left: -@offset;
 			z-index: -1;
 		} // &:before
-
-		&:after {
-			&:extend(.icon-book_bottom);
-			.pseudoBlock;
-			.absolute(auto, auto, -(@bottomH - @designOffset), 50%);
-			margin-left: -@offset;
-			z-index: -1;
-		} // &:after
 
 		li { // {{{2
 			.resetCSS;
@@ -51,7 +44,7 @@ html body section.reviews {
 				display: block;
 				padding-left: 50%;
 				margin-left: -(@offset - (40px + 71px));
-				width: 620px;
+				width: @w;
 				z-index: 10;
 			} // p
 
@@ -118,4 +111,53 @@ html body section.reviews {
 	} // .write_a_review }}}1
 
 	form.add_review { display: none; }
+
+	.pagination {
+		.resetCSS;
+		display: block;
+		.relative;
+		margin-bottom: @bottomH + (50px - 12px) - @designOffset;
+
+		&:before {
+			&:extend(.icon-book_fill);
+			.pseudoBlock;
+			background-repeat: repeat-y;
+			height: 100%;
+			.absolute(0, auto, auto, 50%);
+			margin-left: -@offset;
+			z-index: -1;
+			margin-top: -@designOffset;
+		} // &:before
+
+		&:after {
+			&:extend(.icon-book_bottom);
+			.pseudoBlock;
+			.absolute(auto, auto, -(@bottomH - @designOffset), 50%);
+			margin-left: -@offset;
+			z-index: -1;
+		}
+
+		.ajax_page_loader { .ajaxPageLoader(); }
+
+		& > * {
+			display: block;
+			.customFont('PT Sans', 16px, 24px);
+			color: @contentColor;
+			padding-left: 50%;
+			margin-left: -(@offset - (40px + 71px));
+			width: @w;
+			padding-top: @mainMargin * 2;
+		}
+
+		.ajax_page_loader {
+			padding-top: 0;
+			margin-top: 0;
+			background-position: 58% bottom;
+
+			&.process {
+				padding-top: @mainMargin * 2;
+				margin-top: 0;
+			}
+		}
+	}
 } // html body section.reviews
