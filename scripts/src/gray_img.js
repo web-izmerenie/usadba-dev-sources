@@ -19,10 +19,11 @@ define(function () {
 								grayImg(src, cb);
 							}, 0);
 						} else {
-							alert(
+							// annoying by customer
+							/*alert(
 								getLocalText('err', 'limited_functional') + '\n\n' +
 								getLocalText('err', 'recommend_update_your_browser')
-							);
+							);*/
 						}
 					});
 					return;

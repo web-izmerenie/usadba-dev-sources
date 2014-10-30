@@ -29,10 +29,11 @@ $(function domReady() {
 								// retry
 								toGray();
 							} else {
-								alert(
+								// annoying by customer
+								/*alert(
 									getLocalText('err', 'limited_functional') + '\n\n' +
 									getLocalText('err', 'recommend_update_your_browser')
-								);
+								);*/
 							}
 						});
 						return;
