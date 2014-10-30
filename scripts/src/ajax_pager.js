@@ -46,7 +46,7 @@ function ($, getVal, getLocalText) {
 					.off('scroll' + params.bindSuffix)
 					.off('resize' + params.bindSuffix);
 
-				if (!err.json.items) return;
+				if (!err.json.items) return stop(params);
 				else json = err.json;
 			} else {
 
