@@ -15,181 +15,64 @@ function ($, getVal, getLocalText) {
 	var $d = $(document);
 	var $w = $(window);
 
-	$eventsList.each(function () {
+	$eventsList.each(function (i) {
 
 		var $list = $(this);
 		var $ul = $list.find('>ul');
 
-		// ajax page loader logic {{{1
-		setTimeout(function () {
+		require(['ajax_pager'], function (ajaxPager) {
 
-			var $ajaxPageLoader = $list.find('.pagination .ajax_page_loader');
+			ajaxPager({
+				bindSuffix: '.events_ajax_page_loader_' + i,
+				actionName: 'get_more_events',
+				$loader: $list.find('.pagination .ajax_page_loader'),
+				itemHandler: function (item, next) {
 
-			var bindSuffix = '.events_ajax_page_loader';
-			var actionName = 'get_more_events';
+					var $newEl = $('<li/>').css('opacity', 0);
+					var $h3 = $('<h3/>');
+					var $link;
 
-			var process = false;
-			var finished = false;
+					if (item.link) {
 
-			var count = parseInt($ajaxPageLoader.attr('data-count'), 10);
-			var lastPage = 1;
-
-			if (isNaN(count) || count < 1)
-				throw new Error(
-					'Incorrect count of items per page data- attribute.');
-
-			function stop() {
-
-				$ajaxPageLoader.removeClass('process');
-				setTimeout(function () {
-
-					process = false;
-					scrollHandler();
-				}, getVal('animationSpeed'));
-			}
-
-			function loadItemHook(i, items) {
-
-				if (items.length <= i) return stop();
-
-				var item = items[i++];
-
-				var $newEl = $('<li/>').css('opacity', 0);
-				var $h3 = $('<h3/>');
-				var $link;
-
-				if (item.link) {
-
-					$link = $('<a/>', { href: item.link }).html(item.title);
-					$h3.html($link);
-				} else {
-
-					$h3.html(item.title);
-				}
-
-				$newEl.append($h3);
-
-				var $date = $('<div/>', { class: 'date' }).html(item.date);
-				$newEl.append($date);
-
-				var $img;
-				if (item.picture) {
-
-					$img = $('<img/>', {
-						src: item.picture.src,
-						alt: item.picture.description
-					});
-					$newEl.append($img);
-				}
-
-				var $text;
-				if (item.text) {
-
-					$text = $('<div/>', { class: 'text' }).html(item.text);
-					$newEl.append($text);
-				}
-
-				$ul.append($newEl);
-
-				setTimeout(function () {
-					$newEl.stop().animate(
-						{ opacity: 1 },
-						getVal('animationSpeed'),
-						$.proxy(loadItemHook, null, i, items));
-				}, 0);
-			}
-
-			function successs(jsonAnswer, err, json, page) {
-
-				if (err) {
-
-					if (
-						err instanceof
-							jsonAnswer.exceptions.UnknownStatusValue &&
-						err.json && err.json.status === 'end_of_list'
-					) {
-
-						finished = true;
-						$w
-							.off('scroll' + bindSuffix)
-							.off('resize' + bindSuffix);
-
-						if (!err.json.items) return;
-						else json = err.json;
+						$link = $('<a/>', { href: item.link }).html(item.title);
+						$h3.html($link);
 					} else {
 
-						alert(
-							getLocalText('ERR', 'AJAX') +
-							'\n\n' + err.toString());
-
-						return stop();
+						$h3.html(item.title);
 					}
-				}
 
-				if (!$.isArray(json.items)) {
+					$newEl.append($h3);
 
-					alert(getLocalText('ERR', 'AJAX_PARSE'));
-					return stop();
-				}
+					var $date = $('<div/>', { class: 'date' }).html(item.date);
+					$newEl.append($date);
 
-				lastPage = page;
-				loadItemHook(0, json.items);
-			}
+					var $img;
+					if (item.picture) {
 
-			function error() {
-
-				alert(getLocalText('ERR', 'AJAX'));
-				stop();
-			}
-
-			function load() {
-
-				if (process || finished) return false;
-				else process = true;
-
-				$ajaxPageLoader.addClass('process');
-
-				var page = lastPage + 1;
-
-				$.ajax({
-					url: getVal('ajaxHandlerURL'),
-					type: 'POST',
-					cache: false,
-					dataType: 'text',
-					data: {
-						action: actionName,
-						lang: getVal('lang'),
-						count: count,
-						page: page
-					},
-					success: function (data) {
-						require(['json_answer'], function (jsonAnswer) {
-							jsonAnswer.validate(data, function (err, json) {
-								successs(jsonAnswer, err, json, page);
-							});
+						$img = $('<img/>', {
+							src: item.picture.src,
+							alt: item.picture.description
 						});
-					},
-					error: error
-				});
-			}
+						$newEl.append($img);
+					}
 
-			function scrollHandler() {
+					var $text;
+					if (item.text) {
 
-				if (process || finished) return false;
+						$text = $('<div/>', { class: 'text' }).html(item.text);
+						$newEl.append($text);
+					}
 
-				if (
-					$d.scrollTop() + $w.height() >=
-					$ajaxPageLoader.offset().top
-				)
-					load();
-			}
+					$ul.append($newEl);
 
-			$w
-				.on('scroll' + bindSuffix, scrollHandler)
-				.on('resize' + bindSuffix, scrollHandler);
-
-			scrollHandler();
-		}, 0);
-		// ajax page loader logic }}}1
+					setTimeout(function () {
+						$newEl.stop().animate(
+							{ opacity: 1 },
+							getVal('animationSpeed'),
+							next);
+					}, 0);
+				}
+			});
+		});
 	});
 });

@@ -6,6 +6,9 @@
  * @see {@link https://github.com/web-izmerenie/usadba-dev-sources/blob/master/LICENSE-AGPLv3|License}
  */
 
+
+@import "mixins/ajax_page_loader";
+
 html body .top_side main section.question_and_answer {
 	display: block;
 	width: 960px;
@@ -41,10 +44,12 @@ html body .top_side main section.question_and_answer {
 		&:hover { color: white; }
 	} // .write_a_review }}}1
 
+	@rightWidth: 704px;
+
 	& > ul { // {{{1
 		.resetCSS;
 		display: block;
-		width: 704px;
+		width: @rightWidth;
 		float: right;
 		margin-right: 46px;
 		margin-top: -@mainMargin2;
@@ -111,4 +116,26 @@ html body .top_side main section.question_and_answer {
 			}
 		}
 	} // <ul> }}}1
+
+	.pagination {
+		&:before { .pseudoBlock; clear: both; }
+
+		noscript {
+			display: block;
+			clear: both;
+			margin-top: @mainMargin * 2;
+		}
+
+		display: block;
+		.customFont('PT Sans', 16px, 24px);
+		color: @contentColor;
+		float: right;
+		margin-right: 46px;
+		width: @rightWidth;
+
+		.ajax_page_loader {
+			.ajaxPageLoader();
+			&.process { margin-top: @mainMargin * 2; }
+		}
+	}
 }

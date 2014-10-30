@@ -108,6 +108,10 @@ $(function domReady() {
 		require(['pages/events']);
 	}
 
+	if ($('section.question_and_answer').size() > 0) {
+		require(['pages/question_and_answer']);
+	}
+
 	// photogallery
 	$('main .photogallery').each(function () {
 		var self = this;
